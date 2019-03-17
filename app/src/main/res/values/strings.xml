@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Stankin</string>
+    <string name="schedule">Schedule</string>
+    <string name="modules">Modules</string>
+    <string name="news">News</string>
+    <string name="info">Info</string>
+    <string name="select_date">Select date</string>
+    <string name="today">Today</string>
+    <string name="week_forward">Week forward</string>
+    <string name="week_backward">Week backward</string>
+    <string name="manage_schedule">Manage schedule</string>
+    <string name="calculate_rating">Calculate rating</string>
+    <string name="account">Account</string>
+    <string name="exit">Exit</string>
+    <string name="search">Search</string>
+    <string name="settings">Settings</string>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Станкин</string>
+    <string name="schedule">Расписание</string>
+    <string name="modules">Модули</string>
+    <string name="news">Новости</string>
+    <string name="info">Инфо</string>
+    <string name="select_date">Выбрать дату</string>
+    <string name="today">Сегодня</string>
+    <string name="week_forward">Неделя назад</string>
+    <string name="week_backward">Неделя вперед</string>
+    <string name="search">Поиск</string>
+    <string name="settings">Настройки</string>
+    <string name="account">Аккаунт</string>
+    <string name="manage_schedule">Управление раписанием</string>
+    <string name="calculate_rating">Расчитать рейтинг</string>
+    <string name="exit">Выход</string>
+</resources>
