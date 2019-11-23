@@ -7,7 +7,7 @@ import visapps.mystankin.domain.model.Semester
 
 class MJRemoteDataSource(val service: MJService) {
 
-    //здесь получаем данные из сети, сразу возвращаем и сохраняем в БД
+    //здесь получаем данные из сети
 
     fun getMarks(semester: Semester): Observable<List<Mark>> {
         return Observable.just(emptyList())

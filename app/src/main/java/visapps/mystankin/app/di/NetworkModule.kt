@@ -31,14 +31,17 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGson(): Gson = Gson()
+    fun provideGson(): Gson
+            = Gson()
 
     @Provides
     @Singleton
-    fun provideGsonConverterFactory(gson: Gson): GsonConverterFactory = GsonConverterFactory.create(gson)
+    fun provideGsonConverterFactory(gson: Gson): GsonConverterFactory
+            = GsonConverterFactory.create(gson)
 
     @Provides
     @Singleton
-    fun provideRxJava2CallAdapterFactory(): RxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create()
+    fun provideRxJava2CallAdapterFactory(): RxJava2CallAdapterFactory
+            = RxJava2CallAdapterFactory.create()
 
 }

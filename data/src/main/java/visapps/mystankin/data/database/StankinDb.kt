@@ -8,6 +8,7 @@ import visapps.mystankin.data.database.entity.User
 abstract class StankinDb : RoomDatabase() {
 
     abstract fun mjDao(): MJDao
+    abstract fun scheduleDao(): ScheduleDao
 
     companion object {
         const val DATABASE_NAME = "stankin.db"

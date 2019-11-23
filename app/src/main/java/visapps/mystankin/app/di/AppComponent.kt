@@ -2,21 +2,21 @@ package visapps.mystankin.app.di
 
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjectionModule
+import dagger.android.support.AndroidSupportInjectionModule
 import visapps.mystankin.app.StankinApplication
-import visapps.mystankin.app.mj.di.MJDataModule
-import visapps.mystankin.app.mj.di.MJViewModelModule
+import visapps.mystankin.app.mj.di.MJModule
+import visapps.mystankin.app.schedule.di.ScheduleModule
 import javax.inject.Singleton
 
 @Singleton
 @Component(
     modules = [
-        AndroidInjectionModule::class,
-        ActivityModule::class,
+        AndroidSupportInjectionModule::class,
+        ApplicationModule::class,
         DatabaseModule::class,
         NetworkModule::class,
-        MJDataModule::class,
-        MJViewModelModule::class]
+        ScheduleModule::class,
+        MJModule::class ]
 )
 interface AppComponent {
     @Component.Builder

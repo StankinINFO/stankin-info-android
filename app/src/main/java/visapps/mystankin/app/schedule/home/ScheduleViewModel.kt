@@ -1,7 +1,12 @@
 package visapps.mystankin.app.schedule.home
 
-import androidx.lifecycle.ViewModel;
+import visapps.mystankin.app.base.StankinViewModel
+import visapps.mystankin.domain.repository.ScheduleRepository
+import javax.inject.Inject
 
-class ScheduleViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class ScheduleViewModel @Inject constructor(val repository: ScheduleRepository): StankinViewModel() {
+
+    init{
+        println(repository.javaClass.toString())
+    }
 }

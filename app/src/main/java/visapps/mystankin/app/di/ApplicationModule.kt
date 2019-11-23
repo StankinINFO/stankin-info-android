@@ -9,9 +9,9 @@ import visapps.mystankin.app.mj.di.MJFragmentsModule
 import visapps.mystankin.app.util.StankinViewModelFactory
 
 @Module
-abstract class ActivityModule {
+abstract class ApplicationModule {
 
-    @ContributesAndroidInjector(modules = [MJFragmentsModule::class])
+    @ContributesAndroidInjector()
     abstract fun contributeMainActivity(): MainActivity
 
     @Binds

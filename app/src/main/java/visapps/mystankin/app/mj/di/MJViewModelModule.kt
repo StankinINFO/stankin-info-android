@@ -13,5 +13,5 @@ abstract class MJViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(ModulesViewModel::class)
-    abstract fun bindUserViewModel(modulesViewModel: ModulesViewModel): ViewModel
+    abstract fun bindModulesViewModel(modulesViewModel: ModulesViewModel): ViewModel
 }
