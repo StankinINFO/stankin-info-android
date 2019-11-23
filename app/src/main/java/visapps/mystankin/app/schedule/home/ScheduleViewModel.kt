@@ -1,4 +1,4 @@
-package visapps.mystankin.app.ui.schedule
+package visapps.mystankin.app.schedule.home
 
 import androidx.lifecycle.ViewModel;
 

@@ -8,7 +8,7 @@
 
     <fragment
             android:id="@+id/info"
-            android:name="visapps.mystankin.app.ui.info.InfoFragment"
+            android:name="visapps.mystankin.app.info.home.InfoFragment"
             android:label="@string/info"
             tools:layout="@layout/info_fragment">
     </fragment>

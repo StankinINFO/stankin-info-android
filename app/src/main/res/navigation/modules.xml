@@ -8,7 +8,7 @@
 
     <fragment
             android:id="@+id/modules"
-            android:name="visapps.mystankin.app.ui.modules.ModulesFragment"
+            android:name="visapps.mystankin.app.mj.home.ModulesFragment"
             android:label="@string/modules"
             tools:layout="@layout/modules_fragment">
     </fragment>

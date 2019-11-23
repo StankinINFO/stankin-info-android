@@ -1,11 +1,11 @@
-package visapps.mystankin.app.ui.schedule
+package visapps.mystankin.app.schedule.home
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 
 import visapps.mystankin.app.R
 
@@ -26,7 +26,7 @@ class ScheduleFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ScheduleViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ScheduleViewModel::class.java)
     }
 
 }

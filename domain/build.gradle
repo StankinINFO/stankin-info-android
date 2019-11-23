@@ -1,0 +1,11 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation deps.kotlin.kotlin_stdlib
+    implementation deps.rxjava2
+    implementation deps.dagger.runtime
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

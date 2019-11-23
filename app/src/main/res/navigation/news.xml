@@ -8,7 +8,7 @@
 
     <fragment
             android:id="@+id/newsHost"
-            android:name="visapps.mystankin.app.ui.newshost.NewsHostFragment"
+            android:name="visapps.mystankin.app.news.home.NewsHostFragment"
             android:label="@string/news"
             tools:layout="@layout/news_host_fragment">
     </fragment>

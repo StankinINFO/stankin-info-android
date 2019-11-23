@@ -8,7 +8,7 @@
 
     <fragment
             android:id="@+id/schedule"
-            android:name="visapps.mystankin.app.ui.schedule.ScheduleFragment"
+            android:name="visapps.mystankin.app.schedule.home.ScheduleFragment"
             android:label="@string/schedule"
             tools:layout="@layout/schedule_fragment">
     </fragment>
