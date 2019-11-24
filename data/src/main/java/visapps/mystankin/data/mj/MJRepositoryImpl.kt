@@ -10,6 +10,13 @@ class MJRepositoryImpl (val remote: MJRemoteDataSource,
 
     override fun getMarks(student:String,password:String,semester:String): Observable<List<Mark>> {
         // тут соединяем из бд и сети, сохраняем в бд если получили из сети
+//        local.getMarks()
+//        local.getSemesters()
+//        local.saveMarks()
+//        local.saveSemesters()
+//        local.saveUsers()
+//        local.updateMarks()
+//        local.updateUsersPassword()
         return remote.getMarks(student,password,semester)
     }
 
