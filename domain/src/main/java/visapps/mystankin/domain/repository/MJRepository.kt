@@ -8,5 +8,5 @@ interface MJRepository {
 
     fun getMarks(semester: Semester) : Observable<List<Mark>>
 
-    fun getSemesters() : Observable<List<Semester>>
+    fun getSemesters( ) : Observable<List<Semester>>
 }
