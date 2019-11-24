@@ -1,15 +1,26 @@
 package visapps.mystankin.data.api
 
 import android.database.Observable
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Headers
 import retrofit2.http.POST
 import visapps.mystankin.domain.model.Mark
+import visapps.mystankin.domain.model.Semester
 
 interface MJService {
 
-    @POST("")
-    fun getMarks() : Observable<List<Mark>>
+    @FormUrlEncoded
+    @Headers("Content-Type:application/x-www-form-urlencoded;charset=utf-8")
+    @POST("marks")
+    fun getMarks(@Field("student") cardId:String, @Field("password") password:String, @Field("semester") semester:String) : io.reactivex.Observable<List<Mark>>
+
+    @FormUrlEncoded
+    @Headers("Content-Type:application/x-www-form-urlencoded;charset=utf-8")
+    @POST("semesters")
+    fun getSemesters(@Field("student") cardId:String, @Field("password") password:String) : io.reactivex.Observable<List<Semester>>
 
     companion object {
-        const val ENDPOINT = "https://lk.stankin.ru/api2/"
+        const val ENDPOINT = "https://lk.stankin.ru/webapi/api2/"
     }
 }

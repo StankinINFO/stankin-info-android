@@ -9,8 +9,9 @@ class MJRemoteDataSource(val service: MJService) {
 
     //здесь получаем данные из сети
 
-    fun getMarks(semester: Semester): Observable<List<Mark>> {
-        return Observable.just(emptyList())
+    fun getMarks(student:String,password:String,semester:String): Observable<List<Mark>> {
+        return service.getMarks(student,password,semester)
+
     }
 
     fun getSemesters(): Observable<List<Semester>> {
