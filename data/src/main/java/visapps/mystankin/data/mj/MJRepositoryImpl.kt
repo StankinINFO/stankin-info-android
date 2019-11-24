@@ -8,9 +8,16 @@ import visapps.mystankin.domain.repository.MJRepository
 class MJRepositoryImpl (val remote: MJRemoteDataSource,
                                            val local: MJLocalDataSource) : MJRepository {
 
-    override fun getMarks(semester: Semester): Observable<List<Mark>> {
+    override fun getMarks(student:String,password:String,semester:String): Observable<List<Mark>> {
         // тут соединяем из бд и сети, сохраняем в бд если получили из сети
-        return Observable.just(emptyList())
+//        local.getMarks()
+//        local.getSemesters()
+//        local.saveMarks()
+//        local.saveSemesters()
+//        local.saveUsers()
+//        local.updateMarks()
+//        local.updateUsersPassword()
+        return remote.getMarks(student,password,semester)
     }
 
     override fun getSemesters(): Observable<List<Semester>> {

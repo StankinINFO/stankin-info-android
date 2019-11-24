@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 
 import visapps.mystankin.app.R
 import visapps.mystankin.app.di.Injectable
+import visapps.mystankin.domain.model.Mark
 import javax.inject.Inject
 
 class ModulesFragment : Fragment(), Injectable {
@@ -34,7 +36,7 @@ class ModulesFragment : Fragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.loadSemesters()
+        viewModel.loadSemesters("","","2019-осень")
     }
 
 }
