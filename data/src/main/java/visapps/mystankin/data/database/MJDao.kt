@@ -21,10 +21,10 @@ interface MJDao {
     @Insert
     fun insertSemester(semester: Semester)
 
-    @Query("SELECT semester FROM Semester WHERE id=:id")
-    fun getSemesters(id:Int): LiveData<List<Semester>>
-    @Query("SELECT * FROM Mark WHERE id=:id and semester=:semesters")
-    fun getMarks(id:Int,semesters:String): LiveData<List<Mark>>
-    @Query("UPDATE users SET password=:password WHERE id=:idUsers")
-    fun updateUserPassword(idUsers:Int,password:String)
+//    @Query("SELECT semester FROM Semester WHERE id=:id")
+//    fun getSemesters(id:Int): LiveData<List<Semester>>
+//    @Query("SELECT * FROM Mark WHERE id=:id and semester=:semesters")
+//    fun getMarks(id:Int,semesters:String): LiveData<List<Mark>>
+//    @Query("UPDATE users SET password=:password WHERE id=:idUsers")
+//    fun updateUserPassword(idUsers:Int,password:String)
 }

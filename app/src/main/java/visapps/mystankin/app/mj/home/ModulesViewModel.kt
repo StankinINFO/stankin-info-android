@@ -14,10 +14,11 @@ class ModulesViewModel @Inject constructor(val subjectsWithMarksUseCase: Subject
 
     fun loadSemesters(student:String,password:String,semester:String) {
         // здесь получаем из UseCase и преобразуем в LiveData
+
         val marks = MutableLiveData<List<Mark>>()
         compositeDisposable.add(subjectsWithMarksUseCase(student,password,semester)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {result-> return@subscribe })
+            .subscribe {result-> marks.postValue(result) })
     }
 }

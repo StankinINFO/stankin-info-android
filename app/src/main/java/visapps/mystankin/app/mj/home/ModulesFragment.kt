@@ -36,7 +36,6 @@ class ModulesFragment : Fragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val marks = MutableLiveData<List<Mark>>()
         viewModel.loadSemesters("","","2019-осень")
     }
 

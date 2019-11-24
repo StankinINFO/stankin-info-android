@@ -10,13 +10,12 @@ import javax.inject.Inject
 
 class SubjectsWithMarksUseCase (private val mjRepository: MJRepository) {
 
-    operator fun invoke(student:String,password:String,semester:String): Observable<SubjectWithMarks> {
+    operator fun invoke(student:String,password:String,semester:String): Observable<List<Mark>> {
         // тут маппим из репозитория в окончательный вид,
 
         // возможно также делаем subscribeOn, observeOn, передавая сюда Scheduler
-//        val marks : List<Result>
-//        marks.mjRepository.getMarks(student,password,semester)
-        return mjRepository.getMarks(student,password,semester).map { SubjectWithMarks() }
+
+        return mjRepository.getMarks(student,password,semester)
     }
 
 }
