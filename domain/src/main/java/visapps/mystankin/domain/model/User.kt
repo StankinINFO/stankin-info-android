@@ -1,3 +1,3 @@
 package visapps.mystankin.domain.model
 
-class User(val surname: String, val initials: String, val stgroup: String)
+class User(val student: String, val surname: String, val initials: String, val stgroup: String)

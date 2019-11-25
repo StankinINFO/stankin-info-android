@@ -1,24 +1,38 @@
 package visapps.mystankin.app.mj.home
 
-import androidx.lifecycle.MutableLiveData
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.LiveDataReactiveStreams
+import io.reactivex.BackpressureStrategy
+import io.reactivex.Observable
+import io.reactivex.functions.BiFunction
+import io.reactivex.subjects.BehaviorSubject
 import visapps.mystankin.app.base.StankinViewModel
-import visapps.mystankin.domain.model.Mark
+import visapps.mystankin.domain.model.Result
 import visapps.mystankin.domain.model.Semester
+import visapps.mystankin.domain.model.SubjectWithMarks
+import visapps.mystankin.domain.model.User
 import visapps.mystankin.domain.usecase.SubjectsWithMarksUseCase
 import javax.inject.Inject
 
 class ModulesViewModel @Inject constructor(val subjectsWithMarksUseCase: SubjectsWithMarksUseCase)
     : StankinViewModel() {
 
-    fun loadSemesters(student:String,password:String,semester:String) {
-        // здесь получаем из UseCase и преобразуем в LiveData
+    private val user = BehaviorSubject.create<User>()
+    private val semester = BehaviorSubject.create<Semester>()
+    val marks: LiveData<Result<List<SubjectWithMarks>>>
 
-        val marks = MutableLiveData<List<Mark>>()
-        compositeDisposable.add(subjectsWithMarksUseCase(student,password,semester)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {result-> marks.postValue(result) })
+    init {
+        val query: Observable<Pair<User, Semester>> = Observable.combineLatest(user, semester, BiFunction { u, s -> Pair(u, s) })
+        marks = LiveDataReactiveStreams.fromPublisher(query.switchMap {
+            subjectsWithMarksUseCase(it.first.student, it.second.name)}.toFlowable(BackpressureStrategy.LATEST))
+
+    }
+
+    fun changeSemester(semester: Semester) {
+        this.semester.onNext(semester)
+    }
+
+    fun changeUser(user: User) {
+        this.user.onNext(user)
     }
 }

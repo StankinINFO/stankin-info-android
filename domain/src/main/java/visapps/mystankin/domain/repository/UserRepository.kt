@@ -6,7 +6,7 @@ import visapps.mystankin.domain.model.Result
 
 interface UserRepository {
 
-    fun signIn(student: String, password: String): Observable<Result>
+    fun signIn(student: String, password: String): Observable<Result<User>>
 
     fun getCurrentUser() : Observable<User>
 
