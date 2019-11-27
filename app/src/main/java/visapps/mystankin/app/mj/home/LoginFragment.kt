@@ -54,10 +54,5 @@ class LoginFragment : Fragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-
-        //val navController = findNavController()
-
-       // viewModel.loadSemesters("","","2019-осень")
     }
 }
