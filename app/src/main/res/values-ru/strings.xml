@@ -3,6 +3,9 @@
     <string name="app_name">Станкин</string>
     <string name="schedule">Расписание</string>
     <string name="modules">Модули</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="enter">Войти</string>
     <string name="news">Новости</string>
     <string name="info">Инфо</string>
     <string name="select_date">Выбрать дату</string>

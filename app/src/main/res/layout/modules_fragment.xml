@@ -6,6 +6,12 @@
         android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         tools:context=".mj.home.ModulesFragment">
+    <Button
+        android:id="@+id/changeSemester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Change semester" />
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"

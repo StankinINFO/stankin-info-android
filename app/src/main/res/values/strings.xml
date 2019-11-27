@@ -2,7 +2,10 @@
     <string name="app_name">Stankin</string>
     <string name="schedule">Schedule</string>
     <string name="modules">Modules</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
     <string name="news">News</string>
+    <string name="enter">Login</string>
     <string name="info">Info</string>
     <string name="select_date">Select date</string>
     <string name="today">Today</string>

@@ -5,6 +5,7 @@ import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
 import visapps.mystankin.app.StankinApplication
 import visapps.mystankin.app.mj.di.MJModule
+import visapps.mystankin.app.news.di.NewsModule
 import visapps.mystankin.app.schedule.di.ScheduleModule
 import javax.inject.Singleton
 
@@ -16,7 +17,8 @@ import javax.inject.Singleton
         DatabaseModule::class,
         NetworkModule::class,
         ScheduleModule::class,
-        MJModule::class ]
+        MJModule::class,
+        NewsModule::class]
 )
 interface AppComponent {
     @Component.Builder
