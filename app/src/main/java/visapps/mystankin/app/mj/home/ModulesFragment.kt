@@ -6,15 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.modules_fragment.*
 
 import visapps.mystankin.app.R
 import visapps.mystankin.app.di.Injectable
-import visapps.mystankin.domain.model.Mark
 import visapps.mystankin.domain.model.Result
 import visapps.mystankin.domain.model.Semester
 import visapps.mystankin.domain.model.User
@@ -42,7 +39,6 @@ class ModulesFragment : Fragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //findNavController().navigate(R.id.loginFragment)
         changeSemester.setOnClickListener { viewModel.changeSemester(Semester("2019-осень")) }
         viewModel.changeSemester(Semester("2019-осень"))
         viewModel.changeUser(User("", "", "", ""))

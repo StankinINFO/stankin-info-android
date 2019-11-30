@@ -13,6 +13,13 @@
         android:layout_gravity="center"
         android:text="Change semester" />
 
+    <Button
+        android:id="@+id/changeSemester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Change semester" />
+
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
