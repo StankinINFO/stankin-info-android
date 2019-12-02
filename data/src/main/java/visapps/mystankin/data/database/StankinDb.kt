@@ -12,6 +12,7 @@ abstract class StankinDb : RoomDatabase() {
 
     abstract fun mjDao(): MJDao
     abstract fun scheduleDao(): ScheduleDao
+    abstract fun newsDao(): NewsDao
 
     companion object {
         const val DATABASE_NAME = "stankin.db"

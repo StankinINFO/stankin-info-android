@@ -7,10 +7,14 @@
         app:startDestination="@id/modules">
 
     <fragment
-            android:id="@+id/modules"
-            android:name="visapps.mystankin.app.mj.home.ModulesFragment"
-            android:label="@string/modules"
-            tools:layout="@layout/modules_fragment">
-    </fragment>
+        android:id="@+id/modules"
+        android:name="visapps.mystankin.app.mj.home.ModulesFragment"
+        android:label="@string/modules"
+        tools:layout="@layout/modules_fragment"></fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="visapps.mystankin.app.mj.home.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/login_fragment"/>
 
 </navigation>

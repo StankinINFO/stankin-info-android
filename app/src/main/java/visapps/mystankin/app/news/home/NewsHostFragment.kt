@@ -5,11 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 
 import visapps.mystankin.app.R
+import visapps.mystankin.app.di.Injectable
+import javax.inject.Inject
 
-class NewsHostFragment : Fragment() {
+class NewsHostFragment : Fragment(), Injectable {
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    private val viewModel: NewsHostViewModel by viewModels {
+        viewModelFactory
+    }
     companion object {
         fun newInstance() = NewsHostFragment()
     }

@@ -12,7 +12,11 @@
     <style name="AppTheme.AppBarOverlay" parent="@style/ThemeOverlay.GoogleMaterial.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/colorAccent</item>
     </style>
-
+    <style name="AppTheme_Dark_Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/cardview_dark_background</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:background">@color/design_default_color_primary</item>
+    </style>
 
     <style name="BottomNavigationTheme" parent="Theme.MaterialComponents.Light">
         <item name="colorPrimary">@color/colorAccent</item>
