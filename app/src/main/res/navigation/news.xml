@@ -12,5 +12,10 @@
             android:label="@string/news"
             tools:layout="@layout/news_host_fragment">
     </fragment>
+    <fragment
+        android:id="@+id/moreNewsFragment"
+        android:name="visapps.mystankin.app.news.home.MoreNewsFragment"
+        android:label="MoreNewsFragment"
+        tools:layout="@layout/more_news_fragment"/>
 
 </navigation>

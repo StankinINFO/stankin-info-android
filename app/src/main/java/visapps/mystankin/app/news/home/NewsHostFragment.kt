@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 
 import visapps.mystankin.app.R
 import visapps.mystankin.app.di.Injectable
+import visapps.mystankin.domain.model.DataForQuary
+import visapps.mystankin.domain.model.QuaryForNews
 import javax.inject.Inject
 
 class NewsHostFragment : Fragment(), Injectable {
@@ -32,6 +34,8 @@ class NewsHostFragment : Fragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        val a= QuaryForNews("getNews", DataForQuary(true,false,0,6,1,"",""))
+        viewModel.loadSemesters(a)
     }
 
 }
