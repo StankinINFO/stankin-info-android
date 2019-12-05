@@ -1,13 +1,6 @@
-package visapps.mystankin.data.database
+package visapps.mystankin.data.mj.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
-import visapps.mystankin.data.database.entity.Mark
-import visapps.mystankin.data.database.entity.Semester
-import visapps.mystankin.data.database.entity.User
 
 @Dao
 interface MJDao {

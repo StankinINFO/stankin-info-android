@@ -1,4 +1,4 @@
-package visapps.mystankin.data.api
+package visapps.mystankin.data.schedule.api
 
 interface ScheduleService {
 

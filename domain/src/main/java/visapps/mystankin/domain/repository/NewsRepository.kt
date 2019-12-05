@@ -1,10 +1,9 @@
 package visapps.mystankin.domain.repository
 
 import io.reactivex.Observable
-import visapps.mystankin.domain.model.JustNews
-import visapps.mystankin.domain.model.News
-import visapps.mystankin.domain.model.QuaryForNews
+import visapps.mystankin.domain.model.ShortNews
+import visapps.mystankin.domain.model.NewsQuery
 
 interface NewsRepository {
-    fun getNews(quary: QuaryForNews) : Observable<List<JustNews>>
+    fun getNews(query: NewsQuery) : Observable<List<ShortNews>>
 }

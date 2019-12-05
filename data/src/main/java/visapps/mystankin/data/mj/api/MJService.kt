@@ -1,4 +1,4 @@
-package visapps.mystankin.data.api
+package visapps.mystankin.data.mj.api
 
 import io.reactivex.Observable
 import retrofit2.http.Field

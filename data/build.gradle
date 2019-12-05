@@ -29,6 +29,7 @@ dependencies {
     implementation deps.kotlin.kotlin_stdlib
     implementation deps.rxjava2
     implementation deps.dagger.runtime
+    implementation deps.gson
     implementation deps.retrofit.runtime
     implementation deps.lifecycle.livedata_ktx
 

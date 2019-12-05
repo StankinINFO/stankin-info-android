@@ -1,8 +1,7 @@
-package visapps.mystankin.data.mj
+package visapps.mystankin.data.mj.repository
 
 import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
-import visapps.mystankin.data.api.MJService
+import visapps.mystankin.data.mj.api.MJService
 import visapps.mystankin.domain.model.Mark
 import visapps.mystankin.domain.model.Semester
 

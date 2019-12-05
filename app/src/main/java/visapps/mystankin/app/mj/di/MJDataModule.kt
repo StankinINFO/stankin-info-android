@@ -6,12 +6,12 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import visapps.mystankin.data.api.MJService
-import visapps.mystankin.data.database.MJDao
-import visapps.mystankin.data.database.StankinDb
-import visapps.mystankin.data.mj.MJLocalDataSource
-import visapps.mystankin.data.mj.MJRemoteDataSource
-import visapps.mystankin.data.mj.MJRepositoryImpl
+import visapps.mystankin.data.mj.api.MJService
+import visapps.mystankin.data.mj.database.MJDao
+import visapps.mystankin.data.StankinDb
+import visapps.mystankin.data.mj.repository.MJLocalDataSource
+import visapps.mystankin.data.mj.repository.MJRemoteDataSource
+import visapps.mystankin.data.mj.repository.MJRepositoryImpl
 import visapps.mystankin.domain.repository.MJRepository
 import visapps.mystankin.domain.usecase.SubjectsWithMarksUseCase
 import javax.inject.Singleton
@@ -27,15 +27,18 @@ class MJDataModule {
     @Provides
     @Singleton
     fun provideMJRepository(remote: MJRemoteDataSource, local: MJLocalDataSource): MJRepository
-            = MJRepositoryImpl(remote, local)
+            =
+        MJRepositoryImpl(remote, local)
 
     @Provides
     @Singleton
-    fun provideLocalDataSource(dao: MJDao): MJLocalDataSource = MJLocalDataSource(dao)
+    fun provideLocalDataSource(dao: MJDao): MJLocalDataSource =
+        MJLocalDataSource(dao)
 
     @Provides
     @Singleton
-    fun provideRemoteDataSource(service: MJService): MJRemoteDataSource = MJRemoteDataSource(service)
+    fun provideRemoteDataSource(service: MJService): MJRemoteDataSource =
+        MJRemoteDataSource(service)
 
     @Provides
     @Singleton

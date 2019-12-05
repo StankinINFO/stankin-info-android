@@ -1,4 +1,4 @@
-package visapps.mystankin.data.database
+package visapps.mystankin.data.news.database
 
 import androidx.room.Dao
 

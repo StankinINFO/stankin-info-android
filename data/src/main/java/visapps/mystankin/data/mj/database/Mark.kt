@@ -1,4 +1,4 @@
-package visapps.mystankin.data.database.entity
+package visapps.mystankin.data.mj.database
 
 import androidx.room.Entity
 import androidx.room.ForeignKey

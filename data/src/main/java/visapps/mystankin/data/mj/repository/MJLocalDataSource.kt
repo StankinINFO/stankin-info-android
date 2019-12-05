@@ -1,11 +1,7 @@
-package visapps.mystankin.data.mj
+package visapps.mystankin.data.mj.repository
 
-import io.reactivex.Completable
 import io.reactivex.Observable
-import visapps.mystankin.data.database.MJDao
-import visapps.mystankin.data.database.entity.Mark
-import visapps.mystankin.data.database.entity.Semester
-import visapps.mystankin.data.database.entity.User
+import visapps.mystankin.data.mj.database.MJDao
 
 class MJLocalDataSource(val dao: MJDao) {
 
