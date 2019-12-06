@@ -1,29 +1,33 @@
 package visapps.mystankin.app.news.home
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
+import io.reactivex.BackpressureStrategy
 import visapps.mystankin.app.base.StankinViewModel
+import visapps.mystankin.data.news.repository.NewsPagedDataSourceFactory
 import visapps.mystankin.domain.model.NewsQuery
-import visapps.mystankin.domain.repository.NewsRepository
+import visapps.mystankin.domain.model.News
 import visapps.mystankin.domain.usecase.NewsUseCase
 import javax.inject.Inject
 
-class NewsHostViewModel @Inject constructor(val newsRepository: NewsRepository)
+class NewsHostViewModel @Inject constructor(val useCase: NewsUseCase)
     : StankinViewModel() {
     val test = MutableLiveData<String>()
     val errora = MutableLiveData<String>()
-    fun loadSemesters(query: NewsQuery) {
-        // здесь получаем из UseCase и преобразуем в LiveData
-        compositeDisposable.add(newsRepository.getNews(query)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({ result -> test.postValue(result[0].title)
-                println(result[0].title) },
-                { error -> errora.postValue(error.message) }))
+    val newsList: LiveData<PagedList<News>>
+    val networkState = LiveDataReactiveStreams.fromPublisher(useCase.networkState.toFlowable(BackpressureStrategy.LATEST))
 
-    }
-    fun getNews(query: NewsQuery){
-        newsRepository.getNews(query)
+    private val factory = NewsPagedDataSourceFactory(0, useCase, compositeDisposable)
+
+    init {
+        val config = PagedList.Config.Builder()
+            .setPageSize(20)
+            .setInitialLoadSizeHint(20)
+            .setEnablePlaceholders(false)
+            .build()
+        newsList = LivePagedListBuilder<Int, News>(factory, config).build()
     }
 }

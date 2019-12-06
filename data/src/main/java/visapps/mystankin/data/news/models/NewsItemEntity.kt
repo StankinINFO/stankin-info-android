@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity
-class NewsItem(
+class NewsItemEntity(
     @PrimaryKey
     val id:Int,
     val title:String,

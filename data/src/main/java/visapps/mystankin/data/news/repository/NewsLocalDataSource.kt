@@ -1,4 +1,4 @@
-package visapps.mystankin.data.news
+package visapps.mystankin.data.news.repository
 
 import io.reactivex.Observable
 import visapps.mystankin.data.news.database.NewsDao

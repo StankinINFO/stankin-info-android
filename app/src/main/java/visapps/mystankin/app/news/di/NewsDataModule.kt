@@ -9,9 +9,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import visapps.mystankin.data.news.api.NewsService
 import visapps.mystankin.data.news.database.NewsDao
 import visapps.mystankin.data.StankinDb
-import visapps.mystankin.data.news.NewsLocalDataSource
-import visapps.mystankin.data.news.NewsRemoteDataSource
-import visapps.mystankin.data.news.NewsRepositoryImpl
+import visapps.mystankin.data.news.repository.NewsLocalDataSource
+import visapps.mystankin.data.news.repository.NewsRemoteDataSource
+import visapps.mystankin.data.news.repository.NewsRepositoryImpl
 import visapps.mystankin.domain.repository.NewsRepository
 import visapps.mystankin.domain.usecase.NewsUseCase
 import javax.inject.Singleton
@@ -27,15 +27,18 @@ class NewsDataModule {
     @Provides
     @Singleton
     fun provideNewsRepository(remote: NewsRemoteDataSource, local: NewsLocalDataSource): NewsRepository
-            = NewsRepositoryImpl(remote, local)
+            =
+        NewsRepositoryImpl(remote, local)
 
     @Provides
     @Singleton
-    fun provideLocalDataSource(dao: NewsDao): NewsLocalDataSource = NewsLocalDataSource(dao)
+    fun provideLocalDataSource(dao: NewsDao): NewsLocalDataSource =
+        NewsLocalDataSource(dao)
 
     @Provides
     @Singleton
-    fun provideRemoteDataSource(service: NewsService): NewsRemoteDataSource = NewsRemoteDataSource(service)
+    fun provideRemoteDataSource(service: NewsService): NewsRemoteDataSource =
+        NewsRemoteDataSource(service)
 
     @Provides
     @Singleton

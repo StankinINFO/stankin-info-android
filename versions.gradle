@@ -17,6 +17,7 @@ versions.lifecycle = "2.2.0-rc02"
 versions.material = "1.1.0-beta02"
 versions.navigation = "2.2.0-rc02"
 versions.okhttp_logging_interceptor = "4.2.2"
+versions.paging = "2.1.0"
 versions.retrofit = "2.6.0"
 versions.room = "2.2.2"
 versions.rx_android = "2.1.1"
@@ -72,6 +73,10 @@ navigation.fragment_ktx = "androidx.navigation:navigation-fragment-ktx:$versions
 navigation.ui_ktx = "androidx.navigation:navigation-ui-ktx:$versions.navigation"
 navigation.safe_args_plugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
 deps.navigation = navigation
+
+def paging = [:]
+paging.runtime = "androidx.paging:paging-runtime-ktx:$versions.paging"
+deps.paging = paging
 
 def retrofit = [:]
 retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
