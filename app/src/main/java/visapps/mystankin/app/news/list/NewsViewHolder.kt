@@ -1,6 +1,5 @@
 package visapps.mystankin.app.news.list
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import visapps.mystankin.app.util.GlideRequests
 import visapps.mystankin.data.news.api.NewsService
 import visapps.mystankin.domain.model.News
 import java.text.SimpleDateFormat
+import java.util.*
 
 class NewsViewHolder(private val view: View, private val glide: GlideRequests) :
     RecyclerView.ViewHolder(view) {
@@ -35,7 +35,7 @@ class NewsViewHolder(private val view: View, private val glide: GlideRequests) :
         news?.let {
 
             title.text = it.title
-            @SuppressLint("SimpleDateFormat") val timeStamp = SimpleDateFormat("dd.MM.yyyy").format(it.date)
+            val timeStamp = SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).format(it.date)
             date.text = timeStamp
             glide.load(NewsService.ENDPOINT+it.logo).into(image)
 

@@ -1,18 +1,20 @@
 package visapps.mystankin.app.info.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import visapps.mystankin.app.R
+import visapps.mystankin.app.base.StankinFragment
 
-class InfoFragment : Fragment() {
+class InfoFragment : StankinFragment() {
 
     companion object {
         fun newInstance() = InfoFragment()
     }
+
+    override fun titleResId(): Int = R.string.info
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

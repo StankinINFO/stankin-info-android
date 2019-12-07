@@ -1,7 +1,6 @@
 package visapps.mystankin.app.news.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +10,13 @@ import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.news_host_fragment.*
 
 import visapps.mystankin.app.R
+import visapps.mystankin.app.base.StankinFragment
 import visapps.mystankin.app.di.Injectable
 import visapps.mystankin.app.news.list.NewsAdapter
 import visapps.mystankin.app.util.GlideApp
-import visapps.mystankin.domain.model.NewsQuery
 import javax.inject.Inject
 
-class NewsHostFragment : Fragment(), Injectable {
+class NewsHostFragment : StankinFragment(), Injectable {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
@@ -27,6 +26,8 @@ class NewsHostFragment : Fragment(), Injectable {
     companion object {
         fun newInstance() = NewsHostFragment()
     }
+
+    override fun titleResId(): Int = R.string.news
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

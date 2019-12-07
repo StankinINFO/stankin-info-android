@@ -7,26 +7,14 @@
         android:orientation="vertical"
         tools:context=".mj.home.ModulesFragment">
 
-    <Button
+    <include layout="@layout/stankin_toolbar"/>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/changeSemester"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="176dp"
+        android:layout_height="58dp"
         android:layout_gravity="center"
-        android:text="Change semester" />
-
-    <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-                app:title="@string/modules"
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary">
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
+        style="@style/StankinButton"
+        android:text="Вход" />
 
 </FrameLayout>

@@ -1,7 +1,6 @@
 package visapps.mystankin.app.mj.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +10,15 @@ import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.modules_fragment.*
 
 import visapps.mystankin.app.R
+import visapps.mystankin.app.base.StankinFragment
 import visapps.mystankin.app.di.Injectable
+import visapps.mystankin.app.shared.StankinAlertDialog
 import visapps.mystankin.domain.model.Result
 import visapps.mystankin.domain.model.Semester
 import visapps.mystankin.domain.model.User
 import javax.inject.Inject
 
-class ModulesFragment : Fragment(), Injectable {
+class ModulesFragment : StankinFragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -30,6 +31,8 @@ class ModulesFragment : Fragment(), Injectable {
         fun newInstance() = ModulesFragment()
     }
 
+    override fun titleResId(): Int = R.string.modules
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +42,7 @@ class ModulesFragment : Fragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        changeSemester.setOnClickListener { viewModel.changeSemester(Semester("2019-осень")) }
+        changeSemester.setOnClickListener { StankinAlertDialog.show(childFragmentManager, R.string.wrong_credentials) }
         viewModel.changeSemester(Semester("2019-осень"))
         viewModel.changeUser(User("", "", "", ""))
         viewModel.marks.observe(viewLifecycleOwner, Observer {

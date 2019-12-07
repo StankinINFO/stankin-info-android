@@ -1,7 +1,6 @@
 package visapps.mystankin.app.schedule.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +8,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 
 import visapps.mystankin.app.R
+import visapps.mystankin.app.base.StankinFragment
 import visapps.mystankin.app.di.Injectable
 import javax.inject.Inject
 
-class ScheduleFragment : Fragment(), Injectable {
+class ScheduleFragment : StankinFragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -24,6 +24,8 @@ class ScheduleFragment : Fragment(), Injectable {
     companion object {
         fun newInstance() = ScheduleFragment()
     }
+
+    override fun titleResId(): Int = R.string.schedule
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
