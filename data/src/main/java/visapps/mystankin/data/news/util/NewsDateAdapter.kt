@@ -10,7 +10,7 @@ import java.util.*
 
 class NewsDateAdapter: TypeAdapter<Date>() {
 
-    private val datePatterns = arrayOf("yyyy-MM-dd HH:mm:ssX", "yyyy-MM-dd HH:mm:ss.SSSSSSX")
+    private val datePatterns = arrayOf("yyyy-MM-dd HH:mm:ssZZZZZ", "yyyy-MM-dd HH:mm:ss.SSSSSSZZZZZ")
 
     override fun write(out: JsonWriter, value: Date) {
         throw NotImplementedError()
