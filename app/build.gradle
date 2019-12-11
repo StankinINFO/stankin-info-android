@@ -42,6 +42,7 @@ dependencies {
     implementation deps.navigation.runtime_ktx
     implementation deps.navigation.fragment_ktx
     implementation deps.navigation.ui_ktx
+    implementation deps.paging.runtime
     implementation deps.room.runtime
     implementation deps.lifecycle.runtime
     implementation deps.lifecycle.viewmodel_ktx
@@ -66,6 +67,7 @@ dependencies {
 
     kapt deps.dagger.android_support_compiler
     kapt deps.dagger.compiler
+    kapt deps.glide.compiler
     kapt deps.room.compiler
     kapt deps.lifecycle.compiler
 
