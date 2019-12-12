@@ -8,6 +8,7 @@ class Request<T>(val action: String, val data: T) {
 
         fun createNewsRequest(query: NewsQuery) =
             Request("getNews", NewsRequest(
+                is_main = query.is_main,
                 subdivision_id = query.subdivisionId,
                 count = query.count,
                 page = query.page,

@@ -8,22 +8,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.news_fragment.*
 import kotlinx.android.synthetic.main.news_host_fragment.*
 
 import visapps.mystankin.app.R
 import visapps.mystankin.app.di.Injectable
 import visapps.mystankin.app.news.list.NewsAdapter
+import visapps.mystankin.app.news.list.ViewPagerAdapter
 import visapps.mystankin.app.util.GlideApp
 import visapps.mystankin.domain.model.NewsQuery
 import javax.inject.Inject
 
-class NewsHostFragment : Fragment(), Injectable {
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+class NewsHostFragment : Fragment() {
 
-    private val viewModel: NewsHostViewModel by viewModels {
-        viewModelFactory
-    }
     companion object {
         fun newInstance() = NewsHostFragment()
     }
@@ -37,21 +37,37 @@ class NewsHostFragment : Fragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initAdapter()
+       // initAdapter()
+        viewPager2.adapter = ViewPagerAdapter(this)
+        TabLayoutMediator(tabLayout, viewPager2,
+            TabLayoutMediator.OnConfigureTabCallback { tab, position ->
+                when(position) {
+                    0 -> {
+
+                        tab.text = "Новости"
+
+                    }
+                    1 -> {
+                        tab.text = "Новости деканата"
+
+                    }
+                }
+            }).attach()
+
     }
 
-    private fun initAdapter() {
-        val glide = GlideApp.with(this)
-        val adapter = NewsAdapter(glide) {
-
-        }
-        news_list.adapter = adapter
-        viewModel.newsList.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
-        })
-        viewModel.networkState.observe(viewLifecycleOwner, Observer{
-            adapter.setNetworkState(it)
-        })
-    }
+//    private fun initAdapter() {
+//        val glide = GlideApp.with(this)
+//        val adapter = NewsAdapter(glide) {
+//
+//        }
+//        news_list.adapter = adapter
+//        viewModel.newsList.observe(viewLifecycleOwner, Observer {
+//            adapter.submitList(it)
+//        })
+//        viewModel.networkState.observe(viewLifecycleOwner, Observer{
+//            adapter.setNetworkState(it)
+//        })
+//    }
 
 }

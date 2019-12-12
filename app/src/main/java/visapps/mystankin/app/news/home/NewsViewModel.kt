@@ -1,5 +1,6 @@
 package visapps.mystankin.app.news.home
 
+import androidx.annotation.Nullable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
@@ -8,26 +9,35 @@ import androidx.paging.PagedList
 import io.reactivex.BackpressureStrategy
 import visapps.mystankin.app.base.StankinViewModel
 import visapps.mystankin.data.news.repository.NewsPagedDataSourceFactory
-import visapps.mystankin.domain.model.NewsQuery
 import visapps.mystankin.domain.model.News
 import visapps.mystankin.domain.usecase.NewsUseCase
 import javax.inject.Inject
 
-class NewsHostViewModel @Inject constructor(val useCase: NewsUseCase)
+class NewsViewModel @Inject constructor(val useCase: NewsUseCase)
     : StankinViewModel() {
     val test = MutableLiveData<String>()
     val errora = MutableLiveData<String>()
-    val newsList: LiveData<PagedList<News>>
+    var newsList: LiveData<PagedList<News>>?=null
+    lateinit var factory:NewsPagedDataSourceFactory
     val networkState = LiveDataReactiveStreams.fromPublisher(useCase.networkState.toFlowable(BackpressureStrategy.LATEST))
+    var isMain:Boolean = true
+    var subdivision = 125
 
-    private val factory = NewsPagedDataSourceFactory(0, useCase, compositeDisposable)
+    fun setup(is_main: Boolean, subDivision: Int) {
+        isMain= is_main
+        subdivision= subDivision
 
-    init {
-        val config = PagedList.Config.Builder()
+        factory = NewsPagedDataSourceFactory(isMain,subdivision, useCase, compositeDisposable)
+        if (newsList==null)
+        {
+            val config = PagedList.Config.Builder()
             .setPageSize(20)
             .setInitialLoadSizeHint(20)
             .setEnablePlaceholders(false)
             .build()
-        newsList = LivePagedListBuilder<Int, News>(factory, config).build()
+           newsList = LivePagedListBuilder<Int, News>(factory, config).build()
+        }
     }
+
+
 }

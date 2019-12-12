@@ -13,7 +13,7 @@ import visapps.mystankin.data.news.api.NewsService
 import visapps.mystankin.domain.model.News
 import java.text.SimpleDateFormat
 
-class NewsViewHolder(private val view: View, private val glide: GlideRequests) :
+class NewsViewHolder(private val a:Boolean,private val view: View, private val glide: GlideRequests) :
     RecyclerView.ViewHolder(view) {
 
     private val title = view.findViewById<TextView>(R.id.title)
@@ -37,16 +37,18 @@ class NewsViewHolder(private val view: View, private val glide: GlideRequests) :
             title.text = it.title
             @SuppressLint("SimpleDateFormat") val timeStamp = SimpleDateFormat("dd.MM.yyyy").format(it.date)
             date.text = timeStamp
-            glide.load(NewsService.ENDPOINT+it.logo).into(image)
+            if (a!=false) {
+                glide.load(NewsService.ENDPOINT + it.logo).into(image)
+            }
 
         }
     }
 
     companion object {
-        fun create(parent: ViewGroup, glide: GlideRequests): NewsViewHolder {
+        fun create(a:Boolean,parent: ViewGroup, glide: GlideRequests): NewsViewHolder {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.news_item, parent, false)
-            return NewsViewHolder(view, glide)
+            return NewsViewHolder(a,view, glide)
         }
     }
 
