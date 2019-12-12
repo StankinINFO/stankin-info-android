@@ -1,10 +1,10 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
     <style name="ThemeOverlay.GoogleMaterial.Dark.ActionBar" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar" />
@@ -21,5 +21,12 @@
     <style name="BottomNavigationTheme" parent="Theme.MaterialComponents.Light">
         <item name="colorPrimary">@color/colorAccent</item>
     </style>
-
+    <style name="StankinButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="cornerRadius">22dp</item>
+        <item name="android:colorBackground">@color/colorPrimary</item>
+        <item name="android:background">#131841</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
 </resources>

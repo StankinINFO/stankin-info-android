@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.modules_fragment.*
 
 import visapps.mystankin.app.R
@@ -39,7 +42,19 @@ class ModulesFragment : Fragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        changeSemester.setOnClickListener { viewModel.changeSemester(Semester("2019-осень")) }
+        findNavController().navigate(R.id.loginFragment)
+        var op = arrayOf("2017-весна","2017-осень","2018-весна")
+        spinner.adapter = ArrayAdapter<String>(requireActivity(),android.R.layout.simple_spinner_dropdown_item,op)
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+            }
+        }
+        //changeSemester.setOnClickListener { viewModel.changeSemester(Semester("2019-осень")) }
         viewModel.changeSemester(Semester("2019-осень"))
         viewModel.changeUser(User("", "", "", ""))
         viewModel.marks.observe(viewLifecycleOwner, Observer {

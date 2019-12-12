@@ -18,4 +18,11 @@
     <string name="manage_schedule">Управление раписанием</string>
     <string name="calculate_rating">Расчитать рейтинг</string>
     <string name="exit">Выход</string>
+    <string name="subject">Предмет</string>
+    <string name="module_first">М1</string>
+    <string name="module_second">М2</string>
+    <string name="cource">К</string>
+    <string name="offset">З</string>
+    <string name="exam">Э</string>
+    <string name="coef">К</string>
 </resources>

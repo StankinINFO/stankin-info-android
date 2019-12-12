@@ -1,32 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
-        tools:context=".mj.home.ModulesFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".mj.home.ModulesFragment">
 
-    <Button
-        android:id="@+id/changeSemester"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Change semester" />
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay">
+        <RelativeLayout
+            android:id="@+id/lyGiftList"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="left">
 
-        <androidx.appcompat.widget.Toolbar
-                app:title="@string/modules"
-                android:id="@+id/toolbar"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary">
-        </androidx.appcompat.widget.Toolbar>
+                android:layout_height="42dp"
+                android:layout_margin="3dp"
+                android:orientation="horizontal"
+
+                tools:ignore="UselessParent">
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overlapAnchor="false"
+                    android:padding="5dp"
+                    android:spinnerMode="dropdown"
+                    tools:targetApi="lollipop" />
+
+            </LinearLayout>
+        </RelativeLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/textViewSubject"
+            android:layout_width="183dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:padding="5dp"
+            android:background="#e3f2fd "
+            android:text="@string/subject" />
+
+        <TextView
+            android:id="@+id/textViewModuleFirst"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:text="@string/module_first"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:background="#e3f2fd"
+            android:padding="5dp"/>
+
+        <TextView
+            android:id="@+id/textViewModuleSecond"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:text="@string/module_second"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:textColor="#000000"
+            android:background="#e3f2fd "
+            android:padding="5dp"/>
+
+        <TextView
+            android:id="@+id/textViewCourse"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textSize="15dp"
+            android:textColor="#000000"
+            android:background="#e3f2fd "
+            android:text="@string/cource" />
+
+        <TextView
+            android:id="@+id/textViewOffset"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:textColor="#000000"
+            android:background="#e3f2fd "
+            android:text="@string/offset"
+            />
+
+        <TextView
+            android:id="@+id/textViewExam"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:background="#e3f2fd "
+            android:padding="5dp"
+            android:text="@string/exam"
+            />
+        <TextView
+            android:id="@+id/editTextCoef"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:background="#e3f2fd"
+            android:textSize="15dp"
+            android:padding="5dp"
+            android:text="@string/coef"
+            />
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        />
+</LinearLayout>
