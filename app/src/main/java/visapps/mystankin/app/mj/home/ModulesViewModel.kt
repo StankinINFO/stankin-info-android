@@ -18,17 +18,17 @@ class ModulesViewModel @Inject constructor(val subjectsWithMarksUseCase: Subject
     : StankinViewModel() {
 
     private val user = BehaviorSubject.create<User>()
-    private val semester = BehaviorSubject.create<Semester>()
+    private val semester = BehaviorSubject.create<String>()
     val marks: LiveData<Result<List<SubjectWithMarks>>>
 
     init {
-        val query: Observable<Pair<User, Semester>> = Observable.combineLatest(user, semester, BiFunction { u, s -> Pair(u, s) })
+        val query: Observable<Pair<User, String>> = Observable.combineLatest(user, semester, BiFunction { u, s -> Pair(u, s) })
         marks = LiveDataReactiveStreams.fromPublisher(query.switchMap {
-            subjectsWithMarksUseCase(it.first.student, it.second.name)}.toFlowable(BackpressureStrategy.LATEST))
+            subjectsWithMarksUseCase(it.first.student, it.second)}.toFlowable(BackpressureStrategy.LATEST))
 
     }
 
-    fun changeSemester(semester: Semester) {
+    fun changeSemester(semester: String) {
         this.semester.onNext(semester)
     }
 

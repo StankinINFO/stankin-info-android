@@ -9,7 +9,7 @@ import visapps.mystankin.app.util.GlideRequests
 import visapps.mystankin.domain.model.NetworkState
 import visapps.mystankin.domain.model.News
 
-class NewsAdapter(private val glide: GlideRequests, private val reloadCallback: () -> Unit)
+class NewsAdapter(private val a:Boolean,private val glide: GlideRequests, private val reloadCallback: () -> Unit)
     : PagedListAdapter<News, RecyclerView.ViewHolder>(NEWS_COMPARATOR
 ){
 
@@ -26,6 +26,7 @@ class NewsAdapter(private val glide: GlideRequests, private val reloadCallback: 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             R.layout.news_item -> NewsViewHolder.create(
+                a,
                 parent,
                 glide
             )
