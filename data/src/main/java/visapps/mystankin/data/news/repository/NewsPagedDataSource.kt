@@ -6,7 +6,7 @@ import visapps.mystankin.domain.model.NewsQuery
 import visapps.mystankin.domain.model.News
 import visapps.mystankin.domain.usecase.NewsUseCase
 
-class NewsPagedDataSource(val subdivisionId: Int,
+class NewsPagedDataSource(val is_main:Boolean,val subdivisionId: Int,
                           val useCase: NewsUseCase,
                           val disposable: CompositeDisposable): PageKeyedDataSource<Int, News>() {
 
@@ -14,12 +14,12 @@ class NewsPagedDataSource(val subdivisionId: Int,
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, News>
     ) {
-        val query = NewsQuery(subdivisionId = subdivisionId, count = params.requestedLoadSize, page = 1)
+        val query = NewsQuery(subdivisionId = subdivisionId, count = params.requestedLoadSize, page = 1,is_main = is_main)
         disposable.add(useCase(query).subscribe { callback.onResult(it, null,2) })
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, News>) {
-        val query = NewsQuery(subdivisionId = subdivisionId, count = params.requestedLoadSize, page = params.key)
+        val query = NewsQuery(subdivisionId = subdivisionId, count = params.requestedLoadSize, page = params.key,is_main = is_main)
         disposable.add(useCase(query).subscribe { callback.onResult(it, params.key + 1) })
     }
 

@@ -25,8 +25,6 @@ class ScheduleFragment : StankinFragment(), Injectable {
         fun newInstance() = ScheduleFragment()
     }
 
-    override fun titleResId(): Int = R.string.schedule
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

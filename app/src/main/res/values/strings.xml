@@ -19,4 +19,11 @@
     <string name="settings">Settings</string>
     <string name="ok" translatable="false">OK</string>
     <string name="wrong_credentials">Wrong credentials!</string>
+    <string name="subject">Subject</string>
+    <string name="module_first">M1</string>
+    <string name="module_second">M2</string>
+    <string name="cource">C</string>
+    <string name="offset">O</string>
+    <string name="exam">E</string>
+    <string name="coef">C</string>
 </resources>

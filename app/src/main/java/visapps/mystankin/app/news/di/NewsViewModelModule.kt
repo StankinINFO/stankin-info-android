@@ -5,13 +5,13 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import visapps.mystankin.app.di.ViewModelKey
-import visapps.mystankin.app.news.home.NewsHostViewModel
+import visapps.mystankin.app.news.home.NewsViewModel
 
 @Module
 abstract class NewsViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(NewsHostViewModel::class)
-    abstract fun bindNewsViewModel(newsViewModel: NewsHostViewModel): ViewModel
+    @ViewModelKey(NewsViewModel::class)
+    abstract fun bindNewsViewModel(newsViewModel: NewsViewModel): ViewModel
 }

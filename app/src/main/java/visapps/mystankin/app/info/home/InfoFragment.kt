@@ -14,8 +14,6 @@ class InfoFragment : StankinFragment() {
         fun newInstance() = InfoFragment()
     }
 
-    override fun titleResId(): Int = R.string.info
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
