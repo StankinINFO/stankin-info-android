@@ -33,6 +33,7 @@ dependencies {
     implementation deps.retrofit.runtime
     implementation deps.lifecycle.livedata_ktx
     implementation deps.paging.runtime
+    implementation deps.tink
 
     kapt deps.room.compiler
 

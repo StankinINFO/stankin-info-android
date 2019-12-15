@@ -56,8 +56,7 @@ dependencies {
     implementation deps.retrofit.rxjava2
     implementation deps.okhttp_logging_interceptor
     implementation deps.glide.runtime
-    implementation "androidx.viewpager2:viewpager2:1.0.0"
-    implementation 'com.google.android.material:material:1.1.0-alpha08'
+    implementation deps.viewpager2
 
     implementation deps.dagger.runtime
     implementation deps.dagger.android
