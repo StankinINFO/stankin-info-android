@@ -5,6 +5,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:statusBarColor">#c7c7c7</item>
     </style>
 
     <style name="ThemeOverlay.GoogleMaterial.Dark.ActionBar" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar" />
@@ -22,11 +23,26 @@
         <item name="colorPrimary">@color/colorAccent</item>
     </style>
 
+    <style name="StankinTextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
+        <item name="colorControlNormal">@color/colorStankinBlue</item>
+        <item name="colorControlActivated">@color/colorStankinBlue</item>
+        <item name="colorControlHighlight">@color/colorStankinBlue</item>
+    </style>
+
+    <style name="StankinTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/colorStankinBlue</item>
+        <item name="boxBackgroundColor">@color/colorWhite</item>
+        <item name="hintTextColor">@color/colorStankinBlue</item>
+        <item name="errorTextColor">@color/colorAccent</item>
+        <item name="counterOverflowTextColor">@color/colorStankinBlue</item>
+    </style>
+
     <style name="StankinButton" parent="Widget.MaterialComponents.Button">
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">normal</item>
         <item name="cornerRadius">22dp</item>
-        <item name="android:colorBackground">@color/colorPrimary</item>
+        <item name="android:backgroundTint">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/colorAccent</item>
         <item name="android:background">#131841</item>
         <item name="android:textColor">#ffffff</item>
     </style>
@@ -36,6 +52,11 @@
         <item name="android:textStyle">normal</item>
         <item name="android:fontFamily">@font/notosans</item>
         <item name="cornerRadius">22dp</item>
+    </style>
+
+    <style name="StankinTabLayout" parent="Widget.MaterialComponents.TabLayout.Colored">
+        <item name="tabIndicatorColor">@color/colorStankinBlue</item>
+        <item name="tabTextColor">@color/colorStankinBlue</item>
     </style>
 
 </resources>

@@ -27,25 +27,31 @@
             android:text="Модульный журнал"/>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/StankinTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_login"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_login"
+                android:theme="@style/StankinTextInputLayoutAppearance"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:inputType="textCapWords"
                 android:hint="@string/login" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/StankinTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_password"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_password"
+                android:theme="@style/StankinTextInputLayoutAppearance"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:hint="@string/password" />
         </com.google.android.material.textfield.TextInputLayout>
 
