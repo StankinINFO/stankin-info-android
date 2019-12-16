@@ -1,7 +1,6 @@
 package visapps.mystankin.app.di
 
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -9,8 +8,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import visapps.mystankin.app.BuildConfig
+import visapps.mystankin.app.StankinApplication
+import visapps.mystankin.data.util.CryptoUtil
+import visapps.mystankin.data.util.KeysStorage
 import javax.inject.Singleton
-
 
 @Module
 class NetworkModule {
@@ -45,5 +46,13 @@ class NetworkModule {
     @Singleton
     fun provideRxJava2CallAdapterFactory(): RxJava2CallAdapterFactory
             = RxJava2CallAdapterFactory.create()
+
+    @Provides
+    @Singleton
+    fun provideKeysStorage() = KeysStorage()
+
+    @Provides
+    @Singleton
+    fun provideCryptoUtil(application: StankinApplication, keysStorage: KeysStorage) = CryptoUtil(application, keysStorage)
 
 }

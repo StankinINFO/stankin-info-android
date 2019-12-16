@@ -17,6 +17,7 @@ import visapps.mystankin.app.R
 import visapps.mystankin.app.base.StankinFragment
 import visapps.mystankin.app.di.Injectable
 import visapps.mystankin.app.shared.StankinAlertDialog
+import visapps.mystankin.domain.model.AuthState
 import visapps.mystankin.domain.model.Result
 import visapps.mystankin.domain.model.Semester
 import visapps.mystankin.domain.model.User
@@ -44,7 +45,6 @@ class ModulesFragment : StankinFragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        findNavController().navigate(R.id.loginFragment)
         var op = arrayOf("2017-весна","2017-осень","2018-весна")
         spinner.adapter = ArrayAdapter<String>(requireActivity(),android.R.layout.simple_spinner_dropdown_item,op)
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -58,12 +58,17 @@ class ModulesFragment : StankinFragment(), Injectable {
         }
         //changeSemester.setOnClickListener { viewModel.changeSemester(Semester("2019-осень")) }
         //viewModel.changeSemester(Semester("2019-осень"))
-        viewModel.changeUser(User("", "", "", ""))
+        //viewModel.changeUser(User("", "", "", ""))
         viewModel.marks.observe(viewLifecycleOwner, Observer {
             when(it) {
                 is Result.Success -> println(it.data[0].subject)
                 is Result.Loading -> println("loading")
                 else -> println("error")
+            }
+        })
+        viewModel.authState.observe(viewLifecycleOwner, Observer {
+            if(it is AuthState.NotAuthenticated){
+                findNavController().navigate(R.id.loginFragment)
             }
         })
     }
