@@ -8,13 +8,13 @@ import com.google.crypto.tink.integration.android.AndroidKeysetManager
 import io.reactivex.Single
 import kotlin.Exception
 
-class EncryptionProvider(context: Context, keysProvider: KeysProvider) {
+class CryptoUtil(context: Context, keysStorage: KeysStorage) {
 
     private val aead: Aead
 
     init{
         TinkConfig.register()
-        val masterKeyUri = keysProvider.getMasterKeyUri(MASTER_KEY_ALIAS)
+        val masterKeyUri = keysStorage.getMasterKeyUri(MASTER_KEY_ALIAS)
         val keysetHandle= AndroidKeysetManager.Builder()
             .withSharedPref(context, KEYSET_NAME, PREF_FILE_NAME)
             .withKeyTemplate(AeadKeyTemplates.AES256_GCM)

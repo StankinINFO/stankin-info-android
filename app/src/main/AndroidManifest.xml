@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="visapps.mystankin.app">
-<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    xmlns:tools="http://schemas.android.com/tools"
+    package="visapps.mystankin.app">
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
             android:name=".StankinApplication"
             android:allowBackup="true"
@@ -9,7 +10,8 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
                 android:name=".MainActivity"
                 android:label="@string/app_name">
@@ -19,6 +21,16 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <service
+            android:name="visapps.mystankin.data.mj.account.MJAuthenticatorService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/mj_authenticator" />
+        </service>
     </application>
 
 </manifest>

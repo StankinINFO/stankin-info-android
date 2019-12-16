@@ -18,7 +18,7 @@ interface MJService {
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded;charset=utf-8")
     @POST("semesters")
-    fun getSemesters(@Field("student") cardId:String, @Field("password") password:String) : Observable<List<Semester>>
+    fun getSemesters(@Field("student") cardId:String, @Field("password") password:String): Observable<SemestersResponse>
 
     companion object {
         const val ENDPOINT = "https://lk.stankin.ru/webapi/api2/"

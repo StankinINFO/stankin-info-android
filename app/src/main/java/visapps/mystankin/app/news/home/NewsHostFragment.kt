@@ -41,7 +41,7 @@ class NewsHostFragment : StankinFragment(), Injectable {
        // initAdapter()
         viewPager2.adapter = ViewPagerAdapter(this)
         TabLayoutMediator(tabLayout, viewPager2,
-            TabLayoutMediator.OnConfigureTabCallback { tab, position ->
+            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
                 when(position) {
                     0 -> {
 
