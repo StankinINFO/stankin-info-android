@@ -49,7 +49,8 @@
 
         <TextView
             android:id="@+id/textViewSubject"
-            android:layout_width="183dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.46"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="#000000"
@@ -60,7 +61,8 @@
 
         <TextView
             android:id="@+id/textViewModuleFirst"
-            android:layout_width="38dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.09"
             android:layout_height="match_parent"
             android:text="@string/module_first"
             android:gravity="center"
@@ -71,7 +73,8 @@
 
         <TextView
             android:id="@+id/textViewModuleSecond"
-            android:layout_width="38dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.09"
             android:layout_height="match_parent"
             android:text="@string/module_second"
             android:gravity="center"
@@ -82,7 +85,8 @@
 
         <TextView
             android:id="@+id/textViewCourse"
-            android:layout_width="38dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.09"
             android:layout_height="match_parent"
             android:gravity="center"
             android:padding="5dp"
@@ -93,7 +97,8 @@
 
         <TextView
             android:id="@+id/textViewOffset"
-            android:layout_width="38dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.09"
             android:layout_height="match_parent"
             android:padding="5dp"
             android:gravity="center"
@@ -105,7 +110,8 @@
 
         <TextView
             android:id="@+id/textViewExam"
-            android:layout_width="38dp"
+            android:layout_weight="0.09"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:textColor="#000000"
             android:textSize="15dp"
@@ -116,7 +122,8 @@
             />
         <TextView
             android:id="@+id/editTextCoef"
-            android:layout_width="38dp"
+            android:layout_weight="0.09"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:textColor="#000000"
             android:gravity="center"
