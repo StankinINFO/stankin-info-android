@@ -11,16 +11,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.modules_fragment.*
 
 import visapps.mystankin.app.R
 import visapps.mystankin.app.base.StankinFragment
 import visapps.mystankin.app.di.Injectable
+import visapps.mystankin.app.mj.list.ModulesAdapter
+import visapps.mystankin.app.schedule.list.InfoAdapter
 import visapps.mystankin.app.shared.StankinAlertDialog
-import visapps.mystankin.domain.model.AuthState
-import visapps.mystankin.domain.model.Result
-import visapps.mystankin.domain.model.Semester
-import visapps.mystankin.domain.model.User
+import visapps.mystankin.domain.model.*
 import javax.inject.Inject
 
 class ModulesFragment : StankinFragment(), Injectable {
@@ -36,6 +36,15 @@ class ModulesFragment : StankinFragment(), Injectable {
         fun newInstance() = ModulesFragment()
     }
 
+    private val test = listOf(
+        SubjectWithMarks("Архитектура цифрового производства и предприятия", 54, 0, null, null, 0, 4.0),
+        SubjectWithMarks("Интернет-технологии", 52, 0, null, null, 0, 4.0),
+        SubjectWithMarks("Инфографика", 45, 45, null, 0, null, 3.5),
+        SubjectWithMarks("Математическое и компьютерное моделирование", 45, 45, null, null, 0, 3.5),
+        SubjectWithMarks("Методология научных исследований", 40, 0, null, 0, 0, 3.0),
+        SubjectWithMarks("Технический иностранный язык", 45, 45, null, 45, null, 3.0)
+    )
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,7 +54,7 @@ class ModulesFragment : StankinFragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        var op = arrayOf("2017-весна","2017-осень","2018-весна")
+        var op = arrayOf("2019-осень","2017-осень","2018-весна")
         spinner.adapter = ArrayAdapter<String>(requireActivity(),android.R.layout.simple_spinner_dropdown_item,op)
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -55,6 +64,16 @@ class ModulesFragment : StankinFragment(), Injectable {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
             }
+        }
+
+        modulesList.apply {
+            // set a LinearLayoutManager to handle Android
+            // RecyclerView behavior
+            layoutManager = LinearLayoutManager(requireContext())
+            // set the custom adapter to the RecyclerView
+            adapter = ModulesAdapter(test)
+
+            //addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         }
         //changeSemester.setOnClickListener { viewModel.changeSemester(Semester("2019-осень")) }
         //viewModel.changeSemester(Semester("2019-осень"))

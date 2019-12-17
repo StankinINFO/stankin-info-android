@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.info_fragment.*
 
@@ -28,8 +29,11 @@ class InfoFragment : StankinFragment(),Injectable {
         fun newInstance() = InfoFragment()
     }
     private val test = listOf(
-        Info("адрес","","тест1","тест2"),
-        Info("номер","","тест2","тест3")
+        Info("text","school","Название университета","ФГБОУ ВО \"МГТУ \"СТАНКИН\""),
+        Info("address","place","Юридический адрес","127055, Москва, Вадковский пер., д.3а"),
+        Info("text","time","График работы","Пн.-Чт. - 09.00 - 18.00 Пт. - 09.00 - 16.45, сб.-вс. - выходные дни."),
+        Info("phone","phone","Телефон приемной ректора","(499) 973-30-66"),
+        Info("email","email","Email приемной ректора","rector@stankin.ru")
     )
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,9 +47,11 @@ class InfoFragment : StankinFragment(),Injectable {
         recyclerInfo.apply {
             // set a LinearLayoutManager to handle Android
             // RecyclerView behavior
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = LinearLayoutManager(requireContext())
             // set the custom adapter to the RecyclerView
             adapter = InfoAdapter(test)
+
+            //addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         }
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -6,7 +6,7 @@ class SubjectWithMarks(val subject: String,
                        val course: Int?,
                        val offset: Int?,
                        val exam: Int?,
-                       val coefficient: Int) {
+                       val coefficient: Double?) {
 
     companion object Factory{
         fun fromMarks(marks: List<Mark>): SubjectWithMarks {
@@ -17,7 +17,7 @@ class SubjectWithMarks(val subject: String,
             val offset = marks.firstOrNull { it.num == Mark.MarkType.OFFSET.num }?.value
             val exam = marks.firstOrNull { it.num == Mark.MarkType.EXAM.num }?.value
             val coefficient = marks.minBy { it.factor }?.factor ?: 0
-            return SubjectWithMarks(subject, moduleFirst, moduleSecond, course, offset, exam, coefficient)
+            return SubjectWithMarks(subject, moduleFirst, moduleSecond, course, offset, exam, 0.0)
         }
     }
 }

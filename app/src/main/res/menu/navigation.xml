@@ -3,22 +3,22 @@
 
     <item
             android:id="@+id/schedule"
-            android:icon="@drawable/ic_calendar_black"
+            android:icon="@drawable/ic_schedule_black_24dp"
             android:title="@string/schedule"/>
 
     <item
             android:id="@+id/modules"
-            android:icon="@drawable/ic_user_black"
+            android:icon="@drawable/ic_assignment_black_24dp"
             android:title="@string/modules"/>
 
     <item
             android:id="@+id/news"
-            android:icon="@drawable/ic_doc_black"
+            android:icon="@drawable/ic_event_black_24dp"
             android:title="@string/news"/>
 
     <item
             android:id="@+id/info"
-            android:icon="@drawable/ic_question_black"
+            android:icon="@drawable/ic_school_black_24dp"
             android:title="@string/info"/>
 
 </menu>

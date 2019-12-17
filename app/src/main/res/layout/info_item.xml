@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+    <ImageButton
+        android:id="@+id/infoImage"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="4dp"
+        android:background="@android:color/transparent"
+        android:tint="@color/colorStankinBlue"
+        tools:src="@drawable/ic_phone_black_24dp"/>
+
+    <View
+        android:layout_width="8dp"
+        android:layout_height="0dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ImageButton
-            android:id="@+id/infoImage"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/titleInfo"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/titleInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Test"/>
-            <TextView
-                android:id="@+id/dataInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Test"/>
-        </LinearLayout>
+            tools:text="Телефон"/>
+        <TextView
+            android:id="@+id/dataInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="(499) 973-30-66"/>
     </LinearLayout>
 </LinearLayout>

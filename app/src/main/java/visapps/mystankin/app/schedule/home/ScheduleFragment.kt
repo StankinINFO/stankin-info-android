@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.news_item.*
 import kotlinx.android.synthetic.main.schedule_fragment.*
 
 import visapps.mystankin.app.R
@@ -30,9 +33,9 @@ class ScheduleFragment : StankinFragment(), Injectable {
         fun newInstance() = ScheduleFragment()
     }
     private val test = listOf(
-        Schedule("13 сентрября","лекция","моделирование","14:00-15:00", "421"),
-        Schedule("12 сентрября","семинар","бд","14:00-15:00", "555"),
-        Schedule("11 сентрября","лекция","ис","14:00-15:00", "333"))
+        Schedule("Лекция","Интернет-технологии","16:00 - 17:40", "0206", "Овчинников П.Е."),
+        Schedule("Лекция","Инфографика","18:00 - 19:30", "0209", "Локтев М.А."),
+        Schedule("Семинар","Математическое и компьютерное моделирование","19:40 - 21:10", "357(з)", "Бабарин С.С."))
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
@@ -52,7 +55,12 @@ class ScheduleFragment : StankinFragment(), Injectable {
             layoutManager = LinearLayoutManager(activity)
             // set the custom adapter to the RecyclerView
             adapter = ScheduleAdapter(test)
+
+            addItemDecoration(DividerItemDecoration(requireContext(), VERTICAL))
         }
+        toolbar.title = "ИДМ-19-04"
+        toolbar.subtitle = "12-09-2019"
+        toolbar.inflateMenu(R.menu.schedule)
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
