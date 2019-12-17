@@ -68,7 +68,7 @@ class ModulesFragment : StankinFragment(), Injectable {
         })
         viewModel.authState.observe(viewLifecycleOwner, Observer {
             if(it is AuthState.NotAuthenticated){
-                findNavController().navigate(R.id.loginFragment)
+               // findNavController().navigate(R.id.loginFragment)
             }
         })
     }

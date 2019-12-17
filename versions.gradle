@@ -110,6 +110,7 @@ deps.work = work
 
 deps.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
 deps.viewpager2 = "androidx.viewpager2:viewpager2:$versions.viewpager2"
+deps.materialalfa08 = "com.google.android.material:material:1.1.0-alpha08"
 deps.vectordrawable = "androidx.vectordrawable:vectordrawable:$versions.vectordrawable"
 deps.timber = "com.jakewharton.timber:timber:$versions.timber"
 deps.gson = "com.google.code.gson:gson:$versions.gson"
