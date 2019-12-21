@@ -3,6 +3,7 @@ package visapps.mystankin.data.news.api
 import io.reactivex.Observable
 import retrofit2.http.*
 import visapps.mystankin.data.news.models.NewsItemEntity
+import visapps.mystankin.domain.model.NewsItem
 
 interface NewsService {
 

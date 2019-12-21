@@ -14,5 +14,8 @@ class Request<T>(val action: String, val data: T) {
                 page = query.page,
                 tag = query.tag,
                 query_search = query.querySearch))
+        fun createNewsItemRequest(id: Int) =
+            Request("getNewsItem", NewsItemRequest(
+               id=id))
     }
 }

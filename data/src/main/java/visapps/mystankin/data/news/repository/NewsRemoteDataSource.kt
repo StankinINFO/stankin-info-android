@@ -9,4 +9,7 @@ class NewsRemoteDataSource(val service: NewsService) {
     fun getNews(query: NewsQuery): Observable<List<News>> {
         return service.getNews(Request.createNewsRequest(query)).map { it.data.news.map { item -> item.toNews() } }
     }
+    fun getItemNews(id: Int): Observable<NewsItem> {
+        return service.getNewsItem(Request.createNewsItemRequest(id)).map {it.data.toNews() }
+    }
 }
