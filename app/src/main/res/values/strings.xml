@@ -27,4 +27,5 @@
     <string name="exam">E</string>
     <string name="coef">C</string>
     <string name="mj">Modules Journal</string>
+    <string name="search_group">Search student group</string>
 </resources>

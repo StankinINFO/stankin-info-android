@@ -25,9 +25,27 @@
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerSchedule"
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerSchedule"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:visibility="gone"
+            style="@style/StankinButton"
+            android:id="@+id/selectGroup"
+            android:layout_width="176dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
+            android:text="Выбрать группу" />
+
+    </FrameLayout>
+
 </LinearLayout>

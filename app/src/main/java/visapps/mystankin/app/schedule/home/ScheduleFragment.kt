@@ -5,19 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.news_item.*
 import kotlinx.android.synthetic.main.schedule_fragment.*
 
 import visapps.mystankin.app.R
 import visapps.mystankin.app.base.StankinFragment
 import visapps.mystankin.app.di.Injectable
-import visapps.mystankin.app.schedule.list.InfoAdapter
 import visapps.mystankin.app.schedule.list.ScheduleAdapter
-import visapps.mystankin.domain.model.Schedule
+import visapps.mystankin.app.util.toVisibility
+import visapps.mystankin.domain.model.ScheduleItem
 import javax.inject.Inject
 
 class ScheduleFragment : StankinFragment(), Injectable {
@@ -33,9 +34,9 @@ class ScheduleFragment : StankinFragment(), Injectable {
         fun newInstance() = ScheduleFragment()
     }
     private val test = listOf(
-        Schedule("Лекция","Интернет-технологии","16:00 - 17:40", "0206", "Овчинников П.Е."),
-        Schedule("Лекция","Инфографика","18:00 - 19:30", "0209", "Локтев М.А."),
-        Schedule("Семинар","Математическое и компьютерное моделирование","19:40 - 21:10", "357(з)", "Бабарин С.С."))
+        ScheduleItem(6,"Лекция","Интернет-технологии","16:00 - 17:40", "0206", "Овчинников П.Е.", 0),
+        ScheduleItem(6,"Лекция","Инфографика","18:00 - 19:30", "0209", "Локтев М.А.", 0),
+        ScheduleItem(6,"Семинар","Математическое и компьютерное моделирование","19:40 - 21:10", "357(з)", "Бабарин С.С.", 0))
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
@@ -61,10 +62,30 @@ class ScheduleFragment : StankinFragment(), Injectable {
         toolbar.title = "ИДМ-19-04"
         toolbar.subtitle = "12-09-2019"
         toolbar.inflateMenu(R.menu.schedule)
+        selectGroup.setOnClickListener {
+            findNavController().navigate(R.id.selectGroup)
+        }
+        viewModel.groupSelectedState.observe(viewLifecycleOwner, Observer { selected->
+            selectGroup.visibility = toVisibility(!selected)
+            toolbar.menu.setGroupVisible(R.id.date_group, selected)
+            toolbar.setNavigationIcon(R.drawable.ic_search_black_24dp)
+            updateNavigationIconVisibility(selected)
+        })
+        viewModel.group.observe(viewLifecycleOwner, Observer {
+            toolbar.title = it
+        })
+        viewModel.date.observe(viewLifecycleOwner, Observer {
+            if(it.isEmpty()) { toolbar.subtitle = null } else { toolbar.subtitle = it }
+        })
     }
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        println(viewModel.toString())
+
+    private fun updateNavigationIconVisibility(visible: Boolean) {
+        if(visible){
+            toolbar.setNavigationIcon(R.drawable.ic_search_black_24dp)
+        }
+        else {
+            toolbar.navigationIcon = null
+        }
     }
 
 }

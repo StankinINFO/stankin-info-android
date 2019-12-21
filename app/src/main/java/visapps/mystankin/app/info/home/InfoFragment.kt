@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.info_fragment.*
 
@@ -15,7 +13,6 @@ import visapps.mystankin.app.base.StankinFragment
 import visapps.mystankin.app.di.Injectable
 import visapps.mystankin.app.schedule.list.InfoAdapter
 import visapps.mystankin.domain.model.Info
-import visapps.mystankin.domain.model.Schedule
 import javax.inject.Inject
 
 class InfoFragment : StankinFragment(),Injectable {
