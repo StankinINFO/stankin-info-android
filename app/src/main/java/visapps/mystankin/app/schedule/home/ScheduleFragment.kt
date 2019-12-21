@@ -1,5 +1,6 @@
 package visapps.mystankin.app.schedule.home
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +19,8 @@ import visapps.mystankin.app.base.StankinFragment
 import visapps.mystankin.app.di.Injectable
 import visapps.mystankin.app.schedule.list.ScheduleAdapter
 import visapps.mystankin.app.util.toVisibility
-import visapps.mystankin.domain.model.ScheduleItem
+import visapps.mystankin.domain.model.Result
+import java.util.*
 import javax.inject.Inject
 
 class ScheduleFragment : StankinFragment(), Injectable {
@@ -30,40 +32,54 @@ class ScheduleFragment : StankinFragment(), Injectable {
         viewModelFactory
     }
 
+    private val dateListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+        viewModel.changeDate(year, month, dayOfMonth)
+    }
+
     companion object {
         fun newInstance() = ScheduleFragment()
     }
-    private val test = listOf(
-        ScheduleItem(6,"Лекция","Интернет-технологии","16:00 - 17:40", "0206", "Овчинников П.Е.", 0),
-        ScheduleItem(6,"Лекция","Инфографика","18:00 - 19:30", "0209", "Локтев М.А.", 0),
-        ScheduleItem(6,"Семинар","Математическое и компьютерное моделирование","19:40 - 21:10", "357(з)", "Бабарин С.С.", 0))
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        retainInstance = true
-    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.schedule_fragment, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // RecyclerView node initialized here
-        recyclerSchedule.apply {
-            // set a LinearLayoutManager to handle Android
-            // RecyclerView behavior
+        val scheduleAdapter = ScheduleAdapter()
+        schedule.apply {
             layoutManager = LinearLayoutManager(activity)
-            // set the custom adapter to the RecyclerView
-            adapter = ScheduleAdapter(test)
-
+            adapter = scheduleAdapter
             addItemDecoration(DividerItemDecoration(requireContext(), VERTICAL))
         }
-        toolbar.title = "ИДМ-19-04"
-        toolbar.subtitle = "12-09-2019"
         toolbar.inflateMenu(R.menu.schedule)
+        toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.select_date -> {
+                    showDatePickerDialog()
+                    true }
+                R.id.forward -> {
+                    viewModel.forward()
+                    true
+                }
+                R.id.backward -> {
+                    viewModel.backward()
+                    true
+                }
+                else -> true
+            }
+        }
+        toolbar.setNavigationOnClickListener {
+            findNavController().navigate(R.id.selectGroup)
+        }
         selectGroup.setOnClickListener {
             findNavController().navigate(R.id.selectGroup)
+        }
+        reload.setOnClickListener {
+            viewModel.reload()
         }
         viewModel.groupSelectedState.observe(viewLifecycleOwner, Observer { selected->
             selectGroup.visibility = toVisibility(!selected)
@@ -77,6 +93,19 @@ class ScheduleFragment : StankinFragment(), Injectable {
         viewModel.date.observe(viewLifecycleOwner, Observer {
             if(it.isEmpty()) { toolbar.subtitle = null } else { toolbar.subtitle = it }
         })
+        viewModel.schedule.observe(viewLifecycleOwner, Observer {
+            when(it) {
+                is Result.Success -> println(it.data.size)
+                is Result.Loading -> println("loading")
+                else -> println("error")
+            }
+            schedule.visibility = toVisibility(it is Result.Success && it.data.isNotEmpty())
+            progressBar.visibility = toVisibility(it is Result.Loading)
+            emptyState.visibility = toVisibility(it is Result.Success && it.data.isEmpty())
+            errorState.visibility = toVisibility(it is Result.Error)
+            if(it is Result.Success) { scheduleAdapter.changeItems(it.data) }
+
+        })
     }
 
     private fun updateNavigationIconVisibility(visible: Boolean) {
@@ -86,6 +115,16 @@ class ScheduleFragment : StankinFragment(), Injectable {
         else {
             toolbar.navigationIcon = null
         }
+    }
+
+    private fun showDatePickerDialog() {
+        val calendar = Calendar.getInstance()
+        DatePickerDialog(requireContext(),
+            R.style.StankinDialog,
+            dateListener,
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)).show()
     }
 
 }

@@ -73,4 +73,13 @@
         <item name="android:textColorHint">@android:color/darker_gray</item>
     </style>
 
+    <style name="StankinProgressBar" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorAccent">@color/colorStankinBlue</item>
+    </style>
+
+    <style name="StankinDialog" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorAccent">@color/colorStankinBlue</item>                   <!--header background-->
+        <item name="colorPrimary">@color/colorAccent</item>     <!--calendar background-->
+    </style>
+
 </resources>

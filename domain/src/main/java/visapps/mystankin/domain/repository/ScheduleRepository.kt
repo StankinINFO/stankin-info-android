@@ -15,5 +15,5 @@ interface ScheduleRepository {
 
     fun getSelectedGroup(): Observable<SelectedGroup>
 
-    fun saveSelectedGroup(group: SelectedGroup): Completable
+    fun saveSelectedGroup(group: SelectedGroup)
 }

@@ -28,4 +28,7 @@
     <string name="wrong_credentials">Неверный логин или пароль! Введите данные снова.</string>
     <string name="mj">StankinINFO Модульный журнал</string>
     <string name="search_group">Поиск группы</string>
+    <string name="loading_error">При загрузке данных произошла ошибка</string>
+    <string name="reload">Перезагрузить</string>
+    <string name="no_groups">Группы не найдены</string>
 </resources>

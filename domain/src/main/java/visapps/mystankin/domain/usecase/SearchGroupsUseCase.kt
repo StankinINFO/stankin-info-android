@@ -1,7 +1,9 @@
 package visapps.mystankin.domain.usecase
 
+import io.reactivex.Completable
 import io.reactivex.Observable
 import visapps.mystankin.domain.model.Result
+import visapps.mystankin.domain.model.SelectedGroup
 import visapps.mystankin.domain.model.StudentGroup
 import visapps.mystankin.domain.repository.ScheduleRepository
 import java.util.concurrent.TimeUnit
@@ -18,4 +20,7 @@ class SearchGroupsUseCase @Inject constructor(private val scheduleRepository: Sc
             .startWith (Result.Loading)
             .onErrorReturn { Result.Error(it) }
     }
+
+    fun saveSelectedGroup(group: StudentGroup, subClass: Int)
+            = scheduleRepository.saveSelectedGroup(SelectedGroup(group.id, group.name, subClass))
 }

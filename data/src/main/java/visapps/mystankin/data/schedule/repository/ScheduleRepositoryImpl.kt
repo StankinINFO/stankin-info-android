@@ -43,10 +43,7 @@ class ScheduleRepositoryImpl(private val service: ScheduleService,
 
     override fun getSelectedGroup(): Observable<SelectedGroup> = selectedGroup.distinctUntilChanged()
 
-    override fun saveSelectedGroup(group: SelectedGroup): Completable = Completable.create{
-        preferences.edit().putString(SELECTED_GROUP_KEY, gson.toJson(group))
-        it.onComplete()
-    }
+    override fun saveSelectedGroup(group: SelectedGroup) { preferences.edit().putString(SELECTED_GROUP_KEY, gson.toJson(group)).apply()}
 
     private fun parseSelectedGroup(): SelectedGroup = try{
         gson.fromJson(preferences.getString(SELECTED_GROUP_KEY, "") ?: "", SelectedGroup::class.java)

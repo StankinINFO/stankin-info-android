@@ -31,7 +31,7 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerSchedule"
+            android:id="@+id/schedule"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
@@ -45,6 +45,48 @@
             android:layout_height="58dp"
             android:layout_gravity="center"
             android:text="Выбрать группу" />
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/StankinProgressBar"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/emptyState"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Занятий нет" />
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/errorState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <TextView
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/loading_error" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/StankinButton"
+                android:id="@+id/reload"
+                android:layout_width="176dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="58dp"
+                android:layout_gravity="center"
+                android:text="@string/reload" />
+        </LinearLayout>
 
     </FrameLayout>
 
