@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import visapps.mystankin.app.R
 import visapps.mystankin.domain.model.Info
-import visapps.mystankin.domain.model.Schedule
 
 class InfoAdapter( private val items :List<Info>) : RecyclerView.Adapter<InfoViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfoViewHolder {

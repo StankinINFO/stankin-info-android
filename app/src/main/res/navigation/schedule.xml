@@ -12,5 +12,10 @@
             android:label="@string/schedule"
             tools:layout="@layout/schedule_fragment">
     </fragment>
+    <fragment
+        android:id="@+id/selectGroup"
+        android:name="visapps.mystankin.app.schedule.selectGroup.SelectGroupFragment"
+        android:label="@string/search_group"
+        tools:layout="@layout/select_group_fragment" />
 
 </navigation>
