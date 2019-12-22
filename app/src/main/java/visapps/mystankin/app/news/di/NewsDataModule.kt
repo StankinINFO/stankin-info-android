@@ -13,6 +13,7 @@ import visapps.mystankin.data.news.repository.NewsLocalDataSource
 import visapps.mystankin.data.news.repository.NewsRemoteDataSource
 import visapps.mystankin.data.news.repository.NewsRepositoryImpl
 import visapps.mystankin.domain.repository.NewsRepository
+import visapps.mystankin.domain.usecase.NewItemUseCase
 import visapps.mystankin.domain.usecase.NewsUseCase
 import javax.inject.Singleton
 
@@ -23,6 +24,10 @@ class NewsDataModule {
     @Singleton
     fun provideNewsUseCase(newsRepository: NewsRepository): NewsUseCase
             = NewsUseCase(newsRepository)
+    @Provides
+    @Singleton
+    fun provideNewsItemUseCase(newsRepository: NewsRepository): NewItemUseCase
+            = NewItemUseCase(newsRepository)
 
     @Provides
     @Singleton
