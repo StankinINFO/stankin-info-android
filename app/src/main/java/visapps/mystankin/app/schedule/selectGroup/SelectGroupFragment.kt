@@ -12,12 +12,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.select_group_fragment.*
 import visapps.mystankin.app.R
 import visapps.mystankin.app.base.StankinFragment
 import visapps.mystankin.app.di.Injectable
 import visapps.mystankin.app.util.toVisibility
 import visapps.mystankin.domain.model.Result
+import visapps.mystankin.domain.model.StudentGroup
 import javax.inject.Inject
 
 class SelectGroupFragment : StankinFragment(), Injectable {
@@ -37,8 +39,7 @@ class SelectGroupFragment : StankinFragment(), Injectable {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val groupsAdapter = StudentGroupAdapter {
-            viewModel.selectGroup(it, 0)
-            findNavController().navigateUp()
+            showSubclassDialog(it)
         }
         groupsList.apply {
             layoutManager = LinearLayoutManager(activity)
@@ -65,6 +66,17 @@ class SelectGroupFragment : StankinFragment(), Injectable {
             errorState.visibility = toVisibility(it is Result.Error)
             if(it is Result.Success) { groupsAdapter.changeGroups(it.data) }
         })
+    }
+
+    private fun showSubclassDialog(group: StudentGroup){
+        val subClasses = arrayOf("Подгруппа А", "Подгруппа Б")
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Выберите подгруппу")
+            .setItems(subClasses) { _, which ->
+                viewModel.selectGroup(group, which)
+                findNavController().navigateUp()
+            }
+            .show()
     }
 
 }

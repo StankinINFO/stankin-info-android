@@ -1,10 +1,7 @@
 package visapps.mystankin.app.schedule.home
 
-import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.Transformations.map
-import io.reactivex.BackpressureStrategy
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
@@ -56,7 +53,6 @@ class ScheduleViewModel @Inject constructor(val app: StankinApplication, val dai
             })
     }
 
-
     fun changeDate(year: Int, month: Int, dayOfMonth: Int) {
         val date = dateFormat.parse("$year-${month+1}-$dayOfMonth") ?: Date()
         selectedDate.onNext(date)
@@ -73,6 +69,8 @@ class ScheduleViewModel @Inject constructor(val app: StankinApplication, val dai
     fun reload() {
         selectedDate.onNext(selectedDate.value ?: Date())
     }
+
+    fun selectedDate(): Date = selectedDate.value ?: Date()
 
     private fun addDays(amount: Int) {
         val calendar = Calendar.getInstance()

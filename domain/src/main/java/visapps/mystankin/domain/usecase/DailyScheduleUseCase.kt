@@ -15,7 +15,7 @@ class DailyScheduleUseCase @Inject constructor(private val scheduleRepository: S
     val selectedGroup = scheduleRepository.getSelectedGroup()
 
     operator fun invoke(date: Observable<Date>): Observable<Result<List<ScheduleItem>>> {
-        return Observable.combineLatest<SelectedGroup, Date, Pair<SelectedGroup, Date>>(selectedGroup, date, BiFunction { g, d -> Pair(g, d) })
+        return Observable.combineLatest<SelectedGroup, Date, Pair<SelectedGroup, Date>>(selectedGroup.filter { !it.isEmpty }, date, BiFunction { g, d -> Pair(g, d) })
             .switchMap { scheduleRepository.
                 getDailySchedule(it.first.id, it.first.subClass, it.second).
                 subscribeOn(Schedulers.io())

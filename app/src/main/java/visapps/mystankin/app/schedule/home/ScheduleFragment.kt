@@ -94,17 +94,11 @@ class ScheduleFragment : StankinFragment(), Injectable {
             if(it.isEmpty()) { toolbar.subtitle = null } else { toolbar.subtitle = it }
         })
         viewModel.schedule.observe(viewLifecycleOwner, Observer {
-            when(it) {
-                is Result.Success -> println(it.data.size)
-                is Result.Loading -> println("loading")
-                else -> println("error")
-            }
             schedule.visibility = toVisibility(it is Result.Success && it.data.isNotEmpty())
             progressBar.visibility = toVisibility(it is Result.Loading)
             emptyState.visibility = toVisibility(it is Result.Success && it.data.isEmpty())
             errorState.visibility = toVisibility(it is Result.Error)
             if(it is Result.Success) { scheduleAdapter.changeItems(it.data) }
-
         })
     }
 
@@ -119,6 +113,7 @@ class ScheduleFragment : StankinFragment(), Injectable {
 
     private fun showDatePickerDialog() {
         val calendar = Calendar.getInstance()
+        calendar.time = viewModel.selectedDate()
         DatePickerDialog(requireContext(),
             R.style.StankinDialog,
             dateListener,
