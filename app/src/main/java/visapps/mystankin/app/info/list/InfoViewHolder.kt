@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import visapps.mystankin.app.R
 import visapps.mystankin.domain.model.Info
-import visapps.mystankin.domain.model.Schedule
 
 class InfoViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.info_item, parent, false)) {

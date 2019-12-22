@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import visapps.mystankin.app.R
-import visapps.mystankin.domain.model.Schedule
+import visapps.mystankin.domain.model.ScheduleItem
 
 class ScheduleViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.shedule_item, parent, false)) {
@@ -26,13 +26,13 @@ class ScheduleViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         mTeacherView = itemView.findViewById(R.id.teacher)
     }
 
-    fun bind(schedule: Schedule) {
-        mStartView?.text = schedule.time.substringBefore('-').replace(" ", "", true)
-        mEndView?.text = schedule.time.substringAfter('-').replace(" ", "", true)
-        mTypeView?.text = schedule.type
-        mSubjectView?.text = schedule.subject
-        mAuditoriumView?.text = schedule.auditorium
-        mTeacherView?.text = schedule.teacher
+    fun bind(scheduleItem: ScheduleItem) {
+        mStartView?.text = scheduleItem.time.substringBefore('-').replace(" ", "", true)
+        mEndView?.text = scheduleItem.time.substringAfter('-').replace(" ", "", true)
+        mTypeView?.text = scheduleItem.studyType
+        mSubjectView?.text = scheduleItem.subject
+        mAuditoriumView?.text = scheduleItem.room
+        mTeacherView?.text = scheduleItem.teacher
     }
 
 }

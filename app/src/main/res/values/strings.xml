@@ -27,4 +27,8 @@
     <string name="exam">E</string>
     <string name="coef">C</string>
     <string name="mj">Modules Journal</string>
+    <string name="search_group">Search student group</string>
+    <string name="loading_error">Error while loading data</string>
+    <string name="reload">Reload</string>
+    <string name="no_groups">No student groups found</string>
 </resources>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".schedule.home.ScheduleFragment">
+    tools:context=".schedule.selectGroup.SelectGroupFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -13,15 +13,21 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            app:title="@string/schedule"
-            app:subtitleTextColor="@color/colorStankinBlue"
-            app:subtitleTextAppearance="@style/ScheduleSubtitleAppearance"
-            app:titleTextAppearance="@style/ScheduleTitleAppearance"
-            app:navigationIcon="@drawable/ic_search_black_24dp"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary">
+            android:background="?attr/colorPrimary"
+            app:contentInsetStart="0dp">
+
+            <SearchView
+                android:theme="@style/StankinSearchView"
+                android:queryHint="@string/search_group"
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:iconifiedByDefault="false" />
+
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -29,22 +35,6 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/schedule"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-
-        <com.google.android.material.button.MaterialButton
-            android:visibility="gone"
-            style="@style/StankinButton"
-            android:id="@+id/selectGroup"
-            android:layout_width="176dp"
-            android:layout_marginTop="10dp"
-            android:layout_height="58dp"
-            android:layout_gravity="center"
-            android:text="Выбрать группу" />
 
         <ProgressBar
             android:visibility="gone"
@@ -55,6 +45,14 @@
             android:theme="@style/StankinProgressBar"
             android:layout_gravity="center"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/groupsList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
         <TextView
             android:visibility="gone"
             android:id="@+id/emptyState"
@@ -62,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Занятий нет" />
+            android:text="@string/no_groups" />
 
         <LinearLayout
             android:visibility="gone"
