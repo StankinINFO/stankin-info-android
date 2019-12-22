@@ -6,9 +6,11 @@ import visapps.mystankin.domain.model.User
 
 interface MJUserRepository {
 
-    fun signIn(student: String, password: CharArray): Completable
+    fun signIn(student: String, password: String): Completable
 
-    fun getCurrentUser(): Observable<User?>
+    fun getCurrentUser(): Observable<User>
+
+    fun getUsers(): Observable<List<String>>
 
     fun logOut(student: String): Completable
 

@@ -13,6 +13,6 @@ class NewsRepositoryImpl(val remote: NewsRemoteDataSource, val local: NewsLocalD
     }
 
     override fun getItemNews(id: Int): Observable<NewsItem> {
-        return remote.getItemNews(id).doOnNext{println(it.delta)}
+        return remote.getItemNews(id)
     }
 }

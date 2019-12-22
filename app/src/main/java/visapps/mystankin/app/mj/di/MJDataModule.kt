@@ -11,20 +11,14 @@ import visapps.mystankin.data.mj.api.MJService
 import visapps.mystankin.data.mj.database.MJDao
 import visapps.mystankin.data.StankinDb
 import visapps.mystankin.data.mj.repository.*
-import visapps.mystankin.data.util.CryptoUtil
+import visapps.mystankin.data.util.CryptoStorage
 import visapps.mystankin.domain.repository.MJRepository
 import visapps.mystankin.domain.repository.MJUserRepository
 import visapps.mystankin.domain.usecase.CurrentUserUseCase
-import visapps.mystankin.domain.usecase.SubjectsWithMarksUseCase
 import javax.inject.Singleton
 
 @Module
 class MJDataModule {
-
-    @Provides
-    @Singleton
-    fun provideSubjectsWithMarksUseCase(mjRepository: MJRepository): SubjectsWithMarksUseCase
-            = SubjectsWithMarksUseCase(mjRepository)
 
     @Provides
     @Singleton
@@ -33,9 +27,9 @@ class MJDataModule {
 
     @Provides
     @Singleton
-    fun provideMJRepository(remote: MJRemoteDataSource, local: MJLocalDataSource): MJRepository
+    fun provideMJRepository(remote: MJRemoteDataSource, local: MJLocalDataSource, accounts: MJAccountDataSource): MJRepository
             =
-        MJRepositoryImpl(remote, local)
+        MJRepositoryImpl(remote, local, accounts)
 
     @Provides
     @Singleton
@@ -45,8 +39,8 @@ class MJDataModule {
 
     @Provides
     @Singleton
-    fun provideAccountDataSource(application: StankinApplication, cryptoUtil: CryptoUtil): MJAccountDataSource =
-        MJAccountDataSource(application, cryptoUtil)
+    fun provideAccountDataSource(application: StankinApplication, cryptoStorage: CryptoStorage): MJAccountDataSource =
+        MJAccountDataSource(application, cryptoStorage)
 
     @Provides
     @Singleton

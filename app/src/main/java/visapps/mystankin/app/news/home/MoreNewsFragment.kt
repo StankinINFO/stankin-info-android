@@ -39,12 +39,12 @@ class MoreNewsFragment: Fragment(), Injectable {
 override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
 
-    arguments?.getInt("id")?.let {println(it)
+    arguments?.getInt("id")?.let {
         viewModel.setup(it) }
     viewModel.title.observe(viewLifecycleOwner, Observer {
-        println(it)
+
     })
-    viewModel.news?.observe(viewLifecycleOwner, Observer {
+    viewModel.news.observe(viewLifecycleOwner, Observer {
 
      //   val adapter = NewsItemAdapter(it)
        // newsItem.adapter=adapter

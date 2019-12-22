@@ -8,10 +8,11 @@ import android.os.Bundle
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.subjects.BehaviorSubject
-import visapps.mystankin.data.util.CryptoUtil
+import visapps.mystankin.data.util.CryptoStorage
 import visapps.mystankin.domain.model.User
+import kotlin.Exception
 
-class MJAccountDataSource(context: Context, val cryptoUtil: CryptoUtil) {
+class MJAccountDataSource(context: Context, val cryptoStorage: CryptoStorage) {
 
     private val accountManager: AccountManager = AccountManager.get(context)
 
@@ -22,24 +23,34 @@ class MJAccountDataSource(context: Context, val cryptoUtil: CryptoUtil) {
         accountManager.addOnAccountsUpdatedListener({ accounts-> updateAccounts(accounts.filter { it.type == MJ_ACCOUNT_TYPE }) }, null, true)
     }
 
-    fun addUser(user: User, password: CharArray): Completable =
-        cryptoUtil.encrypt(password).flatMapCompletable { encryptedPassword->
+    fun addUser(user: User, password: String): Completable =
+        cryptoStorage.encrypt(password).flatMapCompletable { encryptedPassword->
             Completable.create {
-                val result = accountManager.addAccountExplicitly(Account(user.student, MJ_ACCOUNT_TYPE), encryptedPassword, Bundle())
-                if(result){
-                    it.onComplete()
+                try{
+                    val result = accountManager.addAccountExplicitly(Account(user.student, MJ_ACCOUNT_TYPE), encryptedPassword, Bundle())
+                    if(result){
+                        it.onComplete()
+                    }
+                    else{
+                        it.onError(AccountsException())
+                    }
                 }
-                else{
-                    it.onError(AccountsException())
+                catch(e: Exception) {
+                    e.printStackTrace()
+                    it.onError(e)
                 }
         } }
 
     fun getUser(student: String): Single<User> = getUserAccount(student).map { account->
-        val surname = accountManager.getUserData(account, SURNAME)
-        val initials = accountManager.getUserData(account, INITIALS)
-        val stgroup = accountManager.getUserData(account, STGROUP)
+        val surname = accountManager.getUserData(account, SURNAME) ?: ""
+        val initials = accountManager.getUserData(account, INITIALS) ?: ""
+        val stgroup = accountManager.getUserData(account, STGROUP) ?: ""
         User(student, surname, initials, stgroup)
     }
+
+    fun getPassword(student: String): Single<String> = getUserAccount(student)
+        .flatMap { getAccountPassword(it) }
+        .flatMap { cryptoStorage.decrypt(it) }
 
     fun removeUser(student: String): Completable = getUserAccount(student)
         .flatMapCompletable { account->
@@ -65,12 +76,24 @@ class MJAccountDataSource(context: Context, val cryptoUtil: CryptoUtil) {
         }
     }
 
-    private fun updateAccounts(newAccounts: List<Account>) = accounts.onNext(newAccounts.map { it.name })
+    private fun getAccountPassword(account: Account): Single<String> = Single.create {
+        try{
+            val password = accountManager.getPassword(account)
+            it.onSuccess(password)
+        }
+        catch(e: Exception) {
+            it.onError(AccountsException())
+        }
+    }
+
+    private fun updateAccounts(newAccounts: List<Account>) {
+        accounts.onNext(newAccounts.map { it.name })
+    }
 
     companion object {
         const val SURNAME = "surname"
         const val INITIALS = "initials"
         const val STGROUP = "stgroup"
-        const val MJ_ACCOUNT_TYPE = ""
+        const val MJ_ACCOUNT_TYPE = "stankin.info.app"
     }
 }

@@ -13,7 +13,7 @@
         tools:layout="@layout/modules_fragment"></fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="visapps.mystankin.app.mj.home.LoginFragment"
+        android:name="visapps.mystankin.app.mj.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/login_fragment"/>
 

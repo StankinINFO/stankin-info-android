@@ -1,10 +1,7 @@
 package visapps.mystankin.app.mj.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.LiveDataReactiveStreams
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
+import androidx.lifecycle.MutableLiveData
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import visapps.mystankin.app.base.StankinViewModel
 import visapps.mystankin.domain.model.*
@@ -15,23 +12,23 @@ import javax.inject.Inject
 class ModulesViewModel @Inject constructor(val currentUserUseCase: CurrentUserUseCase, val subjectsWithMarksUseCase: SubjectsWithMarksUseCase)
     : StankinViewModel() {
 
-    private val user = BehaviorSubject.create<User>()
     private val semester = BehaviorSubject.create<String>()
-    val marks: LiveData<Result<List<SubjectWithMarks>>>
-    val authState: LiveData<AuthState> = LiveDataReactiveStreams.fromPublisher(currentUserUseCase().toFlowable(BackpressureStrategy.LATEST))
+
+    val marks = MutableLiveData<Result<List<SubjectWithMarks>>>()
+    val authState = MutableLiveData<AuthState>()
 
     init {
-        val query: Observable<Pair<User, String>> = Observable.combineLatest(user, semester, BiFunction { u, s -> Pair(u, s) })
-        marks = LiveDataReactiveStreams.fromPublisher(query.switchMap {
-            subjectsWithMarksUseCase(it.first.student, it.second)}.toFlowable(BackpressureStrategy.LATEST))
-
+        compositeDisposable.add(currentUserUseCase().subscribe {
+            authState.postValue(it)
+        })
+        compositeDisposable.add(subjectsWithMarksUseCase(semester)
+            .subscribeOn(Schedulers.io())
+            .subscribe {
+            marks.postValue(it)
+        })
     }
 
     fun changeSemester(semester: String) {
         this.semester.onNext(semester)
-    }
-
-    fun changeUser(user: User) {
-        this.user.onNext(user)
     }
 }

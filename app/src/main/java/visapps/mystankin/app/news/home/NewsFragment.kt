@@ -46,8 +46,6 @@ class NewsFragment : Fragment(), Injectable {
 
         }
         news_list.adapter = adapter
-
-        println(isMain)
        viewModel.setup(isMain,subdivision)
         viewModel.newsList?.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)

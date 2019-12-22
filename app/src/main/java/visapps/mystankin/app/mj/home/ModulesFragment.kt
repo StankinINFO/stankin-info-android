@@ -20,6 +20,7 @@ import visapps.mystankin.app.di.Injectable
 import visapps.mystankin.app.mj.list.ModulesAdapter
 import visapps.mystankin.app.schedule.list.InfoAdapter
 import visapps.mystankin.app.shared.StankinAlertDialog
+import visapps.mystankin.app.util.toVisibility
 import visapps.mystankin.domain.model.*
 import javax.inject.Inject
 
@@ -65,29 +66,23 @@ class ModulesFragment : StankinFragment(), Injectable {
 
             }
         }
-
+        val modulesAdapter = ModulesAdapter()
         modulesList.apply {
-            // set a LinearLayoutManager to handle Android
-            // RecyclerView behavior
             layoutManager = LinearLayoutManager(requireContext())
-            // set the custom adapter to the RecyclerView
-            adapter = ModulesAdapter(test)
-
-            //addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+            adapter = modulesAdapter
         }
-        //changeSemester.setOnClickListener { viewModel.changeSemester(Semester("2019-осень")) }
-        //viewModel.changeSemester(Semester("2019-осень"))
-        //viewModel.changeUser(User("", "", "", ""))
+        viewModel.changeSemester("2019-осень")
         viewModel.marks.observe(viewLifecycleOwner, Observer {
-            when(it) {
-                is Result.Success -> println(it.data[0].subject)
-                is Result.Loading -> println("loading")
-                else -> println("error")
+            modules.visibility = toVisibility(it is Result.Success)
+            progressBar.visibility = toVisibility(it is Result.Loading)
+            errorState.visibility = toVisibility(it is Result.Error)
+            if(it is Result.Success) {
+                modulesAdapter.updateMarks(it.data)
             }
         })
         viewModel.authState.observe(viewLifecycleOwner, Observer {
             if(it is AuthState.NotAuthenticated){
-               // findNavController().navigate(R.id.loginFragment)
+                findNavController().navigate(R.id.loginFragment)
             }
         })
     }

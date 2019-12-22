@@ -9,7 +9,8 @@ class CurrentUserUseCase(private val userRepository: MJUserRepository) {
     operator fun invoke(): Observable<AuthState> {
         return userRepository
             .getCurrentUser()
-            .map { AuthState.Authenticated(it) as AuthState}
-            .onErrorReturn { AuthState.NotAuthenticated }
+            .map {
+                if(!it.isEmpty) {AuthState.Authenticated(it)} else { AuthState.NotAuthenticated}
+            }
     }
 }

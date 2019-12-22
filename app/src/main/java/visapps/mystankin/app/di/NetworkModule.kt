@@ -1,7 +1,6 @@
 package visapps.mystankin.app.di
 
 import com.google.gson.FieldNamingPolicy
-import com.google.gson.FieldNamingStrategy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -12,8 +11,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import visapps.mystankin.app.BuildConfig
 import visapps.mystankin.app.StankinApplication
-import visapps.mystankin.data.util.CryptoUtil
-import visapps.mystankin.data.util.KeysStorage
+import visapps.mystankin.data.util.CryptoStorage
 import javax.inject.Singleton
 
 @Module
@@ -52,10 +50,6 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideKeysStorage() = KeysStorage()
-
-    @Provides
-    @Singleton
-    fun provideCryptoUtil(application: StankinApplication, keysStorage: KeysStorage) = CryptoUtil(application, keysStorage)
+    fun provideCryptoStorage(application: StankinApplication) = CryptoStorage(application)
 
 }

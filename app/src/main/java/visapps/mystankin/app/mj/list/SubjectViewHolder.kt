@@ -35,7 +35,7 @@ class SubjectViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         moduleSecond?.text = subjectWithMarks.moduleSecond?.toString() ?: "x"
         course?.text = subjectWithMarks.course?.toString() ?: "x"
         offset?.text = subjectWithMarks.offset?.toString() ?: "x"
-        exam?.text = subjectWithMarks.offset?.toString() ?: "x"
+        exam?.text = subjectWithMarks.exam?.toString() ?: "x"
         coef?.text = subjectWithMarks.coefficient?.toString() ?: "x"
     }
 

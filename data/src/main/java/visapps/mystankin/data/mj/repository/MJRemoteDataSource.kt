@@ -14,7 +14,7 @@ class MJRemoteDataSource(val service: MJService) {
         return service.getMarks(student,password,semester)
     }
 
-    fun getSemesters(student: String, password: CharArray): Observable<SemestersResponse> {
-        return service.getSemesters(student, password.toString())
+    fun getSemesters(student: String, password: String): Observable<SemestersResponse> {
+        return service.getSemesters(student, password)
     }
 }

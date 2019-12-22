@@ -16,8 +16,8 @@ class SubjectWithMarks(val subject: String,
             val course = marks.firstOrNull { it.num == Mark.MarkType.COURSE.num }?.value
             val offset = marks.firstOrNull { it.num == Mark.MarkType.OFFSET.num }?.value
             val exam = marks.firstOrNull { it.num == Mark.MarkType.EXAM.num }?.value
-            val coefficient = marks.minBy { it.factor }?.factor ?: 0
-            return SubjectWithMarks(subject, moduleFirst, moduleSecond, course, offset, exam, 0.0)
+            val coefficient = marks.minBy { it.factor }?.factor ?: 0.0
+            return SubjectWithMarks(subject, moduleFirst, moduleSecond, course, offset, exam, coefficient)
         }
     }
 }
