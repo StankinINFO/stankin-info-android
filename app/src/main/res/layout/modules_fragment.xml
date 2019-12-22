@@ -11,33 +11,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay">
-        <RelativeLayout
-            android:id="@+id/lyGiftList"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_gravity="left">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:layout_margin="3dp"
-                android:orientation="horizontal"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary">
 
-                tools:ignore="UselessParent">
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:overlapAnchor="false"
+                android:padding="5dp"
+                android:spinnerMode="dropdown"
+                tools:targetApi="lollipop" />
 
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:overlapAnchor="false"
-                    android:padding="5dp"
-                    android:spinnerMode="dropdown"
-                    tools:targetApi="lollipop" />
-
-            </LinearLayout>
-        </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 

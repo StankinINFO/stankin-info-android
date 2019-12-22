@@ -55,6 +55,15 @@ class ModulesFragment : StankinFragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        toolbar.inflateMenu(R.menu.modules)
+        toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.exit -> {
+                    viewModel.exit()
+                    true }
+                else -> true
+            }
+        }
         var op = arrayOf("2019-осень","2017-осень","2018-весна")
         spinner.adapter = ArrayAdapter<String>(requireActivity(),android.R.layout.simple_spinner_dropdown_item,op)
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{

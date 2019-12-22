@@ -31,4 +31,8 @@ class ModulesViewModel @Inject constructor(val currentUserUseCase: CurrentUserUs
     fun changeSemester(semester: String) {
         this.semester.onNext(semester)
     }
+
+    fun exit() {
+        compositeDisposable.add(currentUserUseCase.logOut().subscribe {  })
+    }
 }
