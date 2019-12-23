@@ -6,14 +6,15 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import visapps.mystankin.data.api.MJService
-import visapps.mystankin.data.database.MJDao
-import visapps.mystankin.data.database.StankinDb
-import visapps.mystankin.data.mj.MJLocalDataSource
-import visapps.mystankin.data.mj.MJRemoteDataSource
-import visapps.mystankin.data.mj.MJRepositoryImpl
+import visapps.mystankin.app.StankinApplication
+import visapps.mystankin.data.mj.api.MJService
+import visapps.mystankin.data.mj.database.MJDao
+import visapps.mystankin.data.StankinDb
+import visapps.mystankin.data.mj.repository.*
+import visapps.mystankin.data.util.CryptoStorage
 import visapps.mystankin.domain.repository.MJRepository
-import visapps.mystankin.domain.usecase.SubjectsWithMarksUseCase
+import visapps.mystankin.domain.repository.MJUserRepository
+import visapps.mystankin.domain.usecase.CurrentUserUseCase
 import javax.inject.Singleton
 
 @Module
@@ -21,21 +22,35 @@ class MJDataModule {
 
     @Provides
     @Singleton
-    fun provideSubjectsWithMarksUseCase(mjRepository: MJRepository): SubjectsWithMarksUseCase
-            = SubjectsWithMarksUseCase(mjRepository)
+    fun provideCurrentUserUseCase(mjUserRepository: MJUserRepository): CurrentUserUseCase
+            = CurrentUserUseCase(mjUserRepository)
 
     @Provides
     @Singleton
-    fun provideMJRepository(remote: MJRemoteDataSource, local: MJLocalDataSource): MJRepository
-            = MJRepositoryImpl(remote, local)
+    fun provideMJRepository(remote: MJRemoteDataSource, local: MJLocalDataSource, accounts: MJAccountDataSource): MJRepository
+            =
+        MJRepositoryImpl(remote, local, accounts)
 
     @Provides
     @Singleton
-    fun provideLocalDataSource(dao: MJDao): MJLocalDataSource = MJLocalDataSource(dao)
+    fun provideMJUserRepository(remote: MJRemoteDataSource, accounts: MJAccountDataSource): MJUserRepository
+            =
+        MJUserRepositoryImpl(remote, accounts)
 
     @Provides
     @Singleton
-    fun provideRemoteDataSource(service: MJService): MJRemoteDataSource = MJRemoteDataSource(service)
+    fun provideAccountDataSource(application: StankinApplication, cryptoStorage: CryptoStorage): MJAccountDataSource =
+        MJAccountDataSource(application, cryptoStorage)
+
+    @Provides
+    @Singleton
+    fun provideLocalDataSource(dao: MJDao): MJLocalDataSource =
+        MJLocalDataSource(dao)
+
+    @Provides
+    @Singleton
+    fun provideRemoteDataSource(service: MJService): MJRemoteDataSource =
+        MJRemoteDataSource(service)
 
     @Provides
     @Singleton

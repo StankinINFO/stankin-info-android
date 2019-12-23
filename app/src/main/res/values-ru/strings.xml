@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Станкин</string>
+    <string name="app_name">Stankin INFO</string>
     <string name="schedule">Расписание</string>
     <string name="modules">Модули</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="enter">Войти</string>
     <string name="news">Новости</string>
     <string name="info">Инфо</string>
     <string name="select_date">Выбрать дату</string>
@@ -15,4 +18,17 @@
     <string name="manage_schedule">Управление раписанием</string>
     <string name="calculate_rating">Расчитать рейтинг</string>
     <string name="exit">Выход</string>
+    <string name="subject">Предмет</string>
+    <string name="module_first">М1</string>
+    <string name="module_second">М2</string>
+    <string name="cource">К</string>
+    <string name="offset">З</string>
+    <string name="exam">Э</string>
+    <string name="coef">К</string>
+    <string name="wrong_credentials">Неверный логин или пароль! Введите данные снова.</string>
+    <string name="mj">StankinINFO Модульный журнал</string>
+    <string name="search_group">Поиск группы</string>
+    <string name="loading_error">При загрузке данных произошла ошибка</string>
+    <string name="reload">Перезагрузить</string>
+    <string name="no_groups">Группы не найдены</string>
 </resources>

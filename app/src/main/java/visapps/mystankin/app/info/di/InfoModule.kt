@@ -2,6 +2,5 @@ package visapps.mystankin.app.info.di
 
 import dagger.Module
 
-@Module
-class InfoModule {
-}
+@Module(includes = [InfoDataModule::class, InfoFragmentModule::class, InfoViewModelModule::class])
+interface InfoModule

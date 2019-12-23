@@ -1,5 +1,6 @@
 package visapps.mystankin.app
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
@@ -8,6 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
+import visapps.mystankin.app.shared.VersionDialog
 import visapps.mystankin.app.util.setupWithNavController
 import javax.inject.Inject
 
@@ -15,6 +17,9 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
+
+    @Inject
+    lateinit var preferences: SharedPreferences
 
     private var currentNavController: LiveData<NavController>? = null
 
@@ -24,6 +29,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         }
+        showVersionDialog()
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -58,6 +64,14 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
             intent = intent
         )
         currentNavController = controller
+    }
+
+    private fun showVersionDialog() {
+        val needShowDialog = preferences.getBoolean("alpha 0.0.1", true)
+        if(needShowDialog){
+            preferences.edit().putBoolean("alpha 0.0.1", false).apply()
+            VersionDialog.show(supportFragmentManager)
+        }
     }
 
 }

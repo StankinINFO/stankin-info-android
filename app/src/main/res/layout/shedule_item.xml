@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp">
+
+    <LinearLayout
+        android:padding="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/start"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorStankinBlue"
+            tools:text="10:20"/>
+
+        <TextView
+            android:id="@+id/end"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorStankinBlue"
+            tools:text="12:20"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="8dp"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/type"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            tools:text="Лекция" />
+
+        <TextView
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:id="@+id/subject"
+            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Предмет"/>
+
+        <TextView
+            android:id="@+id/teacher"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_person_black_24dp"
+            app:drawableTint="@color/colorAccent"
+            tools:text="Преподаватель" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/auditorium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipBackgroundColor="@color/colorAccent"
+            app:chipIconTint="@color/colorWhite"
+            app:chipIcon="@drawable/ic_place_black_24dp"
+            android:textColor="@color/colorWhite"
+            tools:text="249б"/>
+
+    </LinearLayout>
+</LinearLayout>

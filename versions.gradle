@@ -8,8 +8,10 @@ versions.constraint_layout = "1.1.3"
 versions.core_ktx = "1.2.0-rc01"
 versions.dagger = "2.25.2"
 versions.espresso = "3.2.0"
+versions.firebase = "17.2.1"
 versions.fragment = "1.2.0-rc02"
 versions.glide = "4.9.0"
+versions.google_services = "4.3.2"
 versions.gson = "2.8.5"
 versions.junit = "4.12"
 versions.kotlin = "1.3.60"
@@ -17,12 +19,15 @@ versions.lifecycle = "2.2.0-rc02"
 versions.material = "1.1.0-beta02"
 versions.navigation = "2.2.0-rc02"
 versions.okhttp_logging_interceptor = "4.2.2"
+versions.paging = "2.1.0"
 versions.retrofit = "2.6.0"
 versions.room = "2.2.2"
 versions.rx_android = "2.1.1"
 versions.rxjava2 = "2.2.14"
 versions.support = "1.0.0"
 versions.timber = "4.7.1"
+versions.tink = "1.3.0-rc1"
+versions.viewpager2 = "1.0.0"
 versions.vectordrawable = "1.1.0"
 versions.work = "2.1.0"
 ext.versions = versions
@@ -47,6 +52,10 @@ def espresso = [:]
 espresso.core = "androidx.test.espresso:espresso-core:$versions.espresso"
 deps.espresso = espresso
 
+def firebase = [:]
+firebase.analytics = "com.google.firebase:firebase-analytics:$versions.firebase"
+deps.firebase = firebase
+
 def glide = [:]
 glide.runtime = "com.github.bumptech.glide:glide:$versions.glide"
 glide.compiler = "com.github.bumptech.glide:compiler:$versions.glide"
@@ -63,6 +72,7 @@ lifecycle.extension = "androidx.lifecycle:lifecycle-extensions:$versions.lifecyc
 lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
 lifecycle.viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
 lifecycle.livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+lifecycle.reactive_streams = "androidx.lifecycle:lifecycle-reactivestreams:$versions.lifecycle"
 deps.lifecycle = lifecycle
 
 def navigation = [:]
@@ -71,6 +81,10 @@ navigation.fragment_ktx = "androidx.navigation:navigation-fragment-ktx:$versions
 navigation.ui_ktx = "androidx.navigation:navigation-ui-ktx:$versions.navigation"
 navigation.safe_args_plugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
 deps.navigation = navigation
+
+def paging = [:]
+paging.runtime = "androidx.paging:paging-runtime-ktx:$versions.paging"
+deps.paging = paging
 
 def retrofit = [:]
 retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
@@ -90,7 +104,7 @@ def support = [:]
 support.app_compat = "androidx.appcompat:appcompat:$versions.appcompat"
 support.recyclerview = "androidx.recyclerview:recyclerview:$versions.support"
 support.cardview = "androidx.cardview:cardview:$versions.support"
-support.design = "com.google.android.material:material:$versions.support"
+support.design = "com.google.android.material:material:$versions.material"
 support.core_ktx = "androidx.core:core-ktx:$versions.core_ktx"
 support.fragment_runtime = "androidx.fragment:fragment:${versions.fragment}"
 support.fragment_runtime_ktx = "androidx.fragment:fragment-ktx:${versions.fragment}"
@@ -101,16 +115,20 @@ work.runtime = "androidx.work:work-runtime:$versions.work"
 deps.work = work
 
 deps.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+deps.viewpager2 = "androidx.viewpager2:viewpager2:$versions.viewpager2"
 deps.vectordrawable = "androidx.vectordrawable:vectordrawable:$versions.vectordrawable"
 deps.timber = "com.jakewharton.timber:timber:$versions.timber"
+deps.gson = "com.google.code.gson:gson:$versions.gson"
 deps.junit = "junit:junit:$versions.junit"
 deps.rxjava2 = "io.reactivex.rxjava2:rxjava:$versions.rxjava2"
 deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
+deps.tink = "com.google.crypto.tink:tink-android:$versions.tink"
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+deps.google_services = "com.google.gms:google-services:$versions.google_services"
 ext.deps = deps
 
 def build_versions = [:]
-build_versions.min_sdk = 16
+build_versions.min_sdk = 21
 build_versions.target_sdk = 29
 build_versions.build_tools = "28.0.3"
 ext.build_versions = build_versions
@@ -121,5 +139,8 @@ static def addRepos(RepositoryHandler handler) {
     handler.google()
     handler.jcenter()
     handler.mavenCentral()
+    handler.maven {
+        url 'https://maven.fabric.io/public'
+    }
 }
 ext.addRepos = this.&addRepos

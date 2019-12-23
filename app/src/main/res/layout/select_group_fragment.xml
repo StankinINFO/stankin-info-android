@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".schedule.selectGroup.SelectGroupFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:contentInsetStart="0dp">
+
+            <SearchView
+                android:theme="@style/StankinSearchView"
+                android:queryHint="@string/search_group"
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:iconifiedByDefault="false" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/StankinProgressBar"
+            android:layout_gravity="center"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/groupsList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/emptyState"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/no_groups" />
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/errorState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <TextView
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/loading_error" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/StankinButton"
+                android:id="@+id/reload"
+                android:layout_width="176dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="58dp"
+                android:layout_gravity="center"
+                android:text="@string/reload" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

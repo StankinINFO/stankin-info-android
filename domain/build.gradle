@@ -5,6 +5,10 @@ dependencies {
     implementation deps.kotlin.kotlin_stdlib
     implementation deps.rxjava2
     implementation deps.dagger.runtime
+    implementation deps.lifecycle.livedata_ktx
+//    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.1.0'
+//    implementation 'android.arch.lifecycle:reactivestreams:1.1.1'
+    //  implementation deps.lifecycle.livedata_ktx
 }
 
 sourceCompatibility = "1.8"
