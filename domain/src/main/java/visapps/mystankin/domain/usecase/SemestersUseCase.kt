@@ -20,6 +20,7 @@ class SemestersUseCase @Inject constructor(private val mjUserRepository: MJUserR
                 mjRepository
                     .getSemesters(u.student)
                     .subscribeOn(Schedulers.io())
+                    .map{ it.sortedByDescending { s->s }}
                     .map { Result.Success(it) as Result<List<String>> }
                     .startWith ( Result.Loading)
                     .onErrorReturn { Result.Error(it) }

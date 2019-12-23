@@ -38,15 +38,6 @@ class ModulesFragment : StankinFragment(), Injectable {
         fun newInstance() = ModulesFragment()
     }
 
-    private val test = listOf(
-        SubjectWithMarks("Архитектура цифрового производства и предприятия", 54, 0, null, null, 0, 4.0),
-        SubjectWithMarks("Интернет-технологии", 52, 0, null, null, 0, 4.0),
-        SubjectWithMarks("Инфографика", 45, 45, null, 0, null, 3.5),
-        SubjectWithMarks("Математическое и компьютерное моделирование", 45, 45, null, null, 0, 3.5),
-        SubjectWithMarks("Методология научных исследований", 40, 0, null, 0, 0, 3.0),
-        SubjectWithMarks("Технический иностранный язык", 45, 45, null, 45, null, 3.0)
-    )
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,15 +56,17 @@ class ModulesFragment : StankinFragment(), Injectable {
                 else -> true
             }
         }
-        var op = arrayOf("2019-осень","2017-осень","2018-весна")
-
+        reload.setOnClickListener {
+            viewModel.refresh()
+        }
+        swipeRefresh.setOnRefreshListener {
+            viewModel.refresh()
+        }
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(p0: AdapterView<*>?) {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-            }
-
-            override fun onItemSelected(p0: AdapterView<*>, p1: View?, p2: Int, p3: Long) {
-                viewModel.changeSemester(p0.adapter.getItem(p2).toString())
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                viewModel.changeSemester(parent.adapter.getItem(position).toString())
             }
         }
         val modulesAdapter = ModulesAdapter()
@@ -82,14 +75,19 @@ class ModulesFragment : StankinFragment(), Injectable {
             adapter = modulesAdapter
         }
         viewModel.semesters.observe(viewLifecycleOwner, Observer {
+            modules.visibility = toVisibility(it is Result.Success)
             if(it is Result.Success) {
                 spinner.adapter = ArrayAdapter<String>(requireActivity(),android.R.layout.simple_spinner_dropdown_item, it.data)
             }
+            errorState.visibility = toVisibility(it is Result.Error)
+            swipeRefresh.isRefreshing = it is Result.Loading
+            swipeRefresh.isEnabled = it !is Result.Error
         })
         viewModel.marks.observe(viewLifecycleOwner, Observer {
             modules.visibility = toVisibility(it is Result.Success)
-            progressBar.visibility = toVisibility(it is Result.Loading)
             errorState.visibility = toVisibility(it is Result.Error)
+            swipeRefresh.isRefreshing = it is Result.Loading
+            swipeRefresh.isEnabled = it !is Result.Error
             if(it is Result.Success) {
                 modulesAdapter.updateMarks(it.data)
             }

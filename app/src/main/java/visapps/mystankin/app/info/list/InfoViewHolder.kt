@@ -15,12 +15,12 @@ import visapps.mystankin.app.info.home.InfoFragment
 import visapps.mystankin.domain.model.Info
 
 
-class InfoViewHolder(itemview:View) :
+class InfoViewHolder(itemview: View) :
     RecyclerView.ViewHolder(itemview) {
     private var mIcon: ImageButton? = null
     private var mTitleView: TextView? = null
     private var mDataView: TextView? = null
-    private var test1:Info? = null
+    private var test1: Info? = null
 
 
     init {
@@ -38,7 +38,7 @@ class InfoViewHolder(itemview:View) :
     fun bind(info: Info) {
         mDataView?.text = info.data
         mTitleView?.text = info.title
-        val icon = when(info.icon){
+        val icon = when (info.icon) {
             "phone" -> R.drawable.ic_phone_black_24dp
             "email" -> R.drawable.ic_email_black_24dp
             "place" -> R.drawable.ic_place_black_24dp
@@ -48,45 +48,25 @@ class InfoViewHolder(itemview:View) :
             else -> R.drawable.ic_school_black_24dp
         }
         mIcon?.setImageResource(icon)
-        if (icon==R.drawable.ic_phone_black_24dp) {
-            mIcon?.setOnClickListener {
+        itemView.setOnClickListener {
+            if (icon == R.drawable.ic_phone_black_24dp) {
                 val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + info.data))
                 itemView.context.startActivity(intent)
-            }
-        }
-            else if (icon==R.drawable.ic_email_black_24dp)
-        {        mIcon?.setOnClickListener {
-            val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + info.data))
-            itemView.context.startActivity(Intent.createChooser(intent, ""))
-            }
-        }
-            else if (icon==R.drawable.ic_place_black_24dp)
-        {
-            mIcon?.setOnClickListener {
-                val uri = Uri.parse("google.navigation:q="+info.data)
+            } else if (icon == R.drawable.ic_email_black_24dp) {
+                val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + info.data))
+                itemView.context.startActivity(Intent.createChooser(intent, ""))
+            } else if (icon == R.drawable.ic_place_black_24dp) {
+                val uri = Uri.parse("google.navigation:q=" + info.data)
                 val intent = Intent(Intent.ACTION_VIEW, uri)
                 intent.setPackage("com.google.android.apps.maps")
                 itemView.context.startActivity(intent)
-//                val map = Uri.parse("geo.navigation:0,0?q=" + info.data)
-//                val intent = Intent(Intent.ACTION_VIEW, map)
-//                val packageManager = itemView.context.packageManager
-//                val activities = packageManager.queryIntentActivities(intent, 0)
-//                val isIntentSafe = activities.size > 0
-//                if (isIntentSafe) {
-//                    itemView.context.startActivity(intent)
-//                }
-            }
-            }
-        else if (icon==R.drawable.ic_language_black_24dp)
-        {
-            mIcon?.setOnClickListener {
+            } else if (icon == R.drawable.ic_language_black_24dp) {
                 val intent = Intent(Intent.ACTION_VIEW)
-
                 intent.data = Uri.parse(info.data)
                 itemView.context.startActivity(intent)
             }
-            }
         }
-
     }
+
+}
 

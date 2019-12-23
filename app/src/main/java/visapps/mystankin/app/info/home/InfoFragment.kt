@@ -1,8 +1,5 @@
 package visapps.mystankin.app.info.home
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +12,7 @@ import visapps.mystankin.app.R
 import visapps.mystankin.app.base.StankinFragment
 import visapps.mystankin.app.di.Injectable
 import visapps.mystankin.app.schedule.list.InfoAdapter
+import visapps.mystankin.app.shared.VersionDialog
 import visapps.mystankin.domain.model.Info
 import javax.inject.Inject
 
@@ -43,36 +41,29 @@ class InfoFragment : StankinFragment(),Injectable {
         Info("email","email","Email единого деканата","dekanat@stankin.ru")
 
     )
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.info_fragment, container, false)
     }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        // RecyclerView node initialized here
-        recyclerInfo.apply {
-            // set a LinearLayoutManager to handle Android
-            // RecyclerView behavior
-            layoutManager = LinearLayoutManager(requireContext())
-            // set the custom adapter to the RecyclerView
-            adapter = InfoAdapter(test)
 
-
-            //addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
-        }
-//
-//        try {
-//            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("+79252765617"))
-//            activity!!.startActivity(intent)
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//
-//        }
-    }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        toolbar.inflateMenu(R.menu.info)
+        toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.info -> {
+                    VersionDialog.show(childFragmentManager)
+                    true }
+                else -> true
+            }
+        }
+        recyclerInfo.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = InfoAdapter(test)
+        }
     }
 
 }

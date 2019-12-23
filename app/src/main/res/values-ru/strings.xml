@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Станкин</string>
+    <string name="app_name">Stankin INFO</string>
     <string name="schedule">Расписание</string>
     <string name="modules">Модули</string>
     <string name="login">Логин</string>

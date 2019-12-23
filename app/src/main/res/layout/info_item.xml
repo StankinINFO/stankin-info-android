@@ -4,7 +4,8 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:foreground="?android:attr/selectableItemBackground">
     <ImageButton
         android:id="@+id/infoImage"
         android:layout_width="48dp"

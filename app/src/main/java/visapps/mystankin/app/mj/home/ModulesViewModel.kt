@@ -27,8 +27,11 @@ class ModulesViewModel @Inject constructor(val currentUserUseCase: CurrentUserUs
     init {
         compositeDisposable.add((semestersUseCase(refreshTrigger)
             .subscribe {
-            semesters.postValue(it)
-        }))
+                if(it is Result.Success) {
+                    updateSemester(it.data)
+                }
+                semesters.postValue(it)
+            }))
         compositeDisposable.add(currentUserUseCase().subscribe {
             authState.postValue(it)
         })
@@ -41,10 +44,33 @@ class ModulesViewModel @Inject constructor(val currentUserUseCase: CurrentUserUs
     }
 
     fun changeSemester(semester: String) {
-        this.semester.onNext(semester)
+        if(this.semester.value != semester) {
+            this.semester.onNext(semester)
+        }
+    }
+
+    fun refresh() {
+        refreshTrigger.onNext(Unit)
     }
 
     fun exit() {
         compositeDisposable.add(currentUserUseCase.logOut().subscribe {  })
+    }
+
+    private fun updateSemester(semesters: List<String>) {
+        semester.value?.let {
+            if(semesters.contains(it)) {
+                semester.onNext(it)
+            }
+            else {
+                semesters.firstOrNull()?.let {s->
+                    semester.onNext(s)
+                }
+            }
+        }?: run {
+            semesters.firstOrNull()?.let {s->
+                semester.onNext(s)
+            }
+        }
     }
 }
