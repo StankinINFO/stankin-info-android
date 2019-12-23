@@ -67,9 +67,9 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
     }
 
     private fun showVersionDialog() {
-        val needShowDialog = preferences.getBoolean("alpha 0.0.1", true)
+        val needShowDialog = preferences.getBoolean("0.0.1-alpha", true)
         if(needShowDialog){
-            preferences.edit().putBoolean("alpha 0.0.1", false).apply()
+            preferences.edit().putBoolean("0.0.1-alpha", false).apply()
             VersionDialog.show(supportFragmentManager)
         }
     }
