@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.view.get
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -65,14 +66,14 @@ class ModulesFragment : StankinFragment(), Injectable {
             }
         }
         var op = arrayOf("2019-осень","2017-осень","2018-весна")
-        spinner.adapter = ArrayAdapter<String>(requireActivity(),android.R.layout.simple_spinner_dropdown_item,op)
+
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
             }
 
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-
+            override fun onItemSelected(p0: AdapterView<*>, p1: View?, p2: Int, p3: Long) {
+                viewModel.changeSemester(p0.adapter.getItem(p2).toString())
             }
         }
         val modulesAdapter = ModulesAdapter()
@@ -80,7 +81,11 @@ class ModulesFragment : StankinFragment(), Injectable {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = modulesAdapter
         }
-        viewModel.changeSemester("2019-осень")
+        viewModel.semesters.observe(viewLifecycleOwner, Observer {
+            if(it is Result.Success) {
+                spinner.adapter = ArrayAdapter<String>(requireActivity(),android.R.layout.simple_spinner_dropdown_item, it.data)
+            }
+        })
         viewModel.marks.observe(viewLifecycleOwner, Observer {
             modules.visibility = toVisibility(it is Result.Success)
             progressBar.visibility = toVisibility(it is Result.Loading)

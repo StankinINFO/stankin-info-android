@@ -15,5 +15,5 @@ class CurrentUserUseCase(private val userRepository: MJUserRepository) {
             }
     }
 
-    fun logOut(): Completable = userRepository.getCurrentUser().switchMapCompletable { userRepository.logOut(it.student) }
+    fun logOut(): Completable = userRepository.getCurrentUser().firstOrError().flatMapCompletable { userRepository.logOut(it.student) }
 }

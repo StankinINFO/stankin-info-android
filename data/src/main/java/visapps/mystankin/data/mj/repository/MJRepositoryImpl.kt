@@ -18,7 +18,7 @@ class MJRepositoryImpl(val remote: MJRemoteDataSource,
 
     }
 
-    override fun getSemesters(): Observable<List<Semester>> {
-        return Observable.just(emptyList())
+    override fun getSemesters(student:String): Observable<List<String>> {
+        return accounts.getPassword(student).flatMapObservable { remote.getSemesters(student, it)}.map { it.semesters }
     }
 }
