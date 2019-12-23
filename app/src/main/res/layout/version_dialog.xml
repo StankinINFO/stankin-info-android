@@ -18,7 +18,7 @@
         android:layout_marginBottom="24dp"
         android:autoLink="web"
         android:textColorLink="@color/colorAccent"
-        android:text="Внимание! Это первая альфа-версия приложения Stankin INFO. Она создана для ознакомления с проектом, часть функционала еще не реализована. Вы можете следить за ходом развития проекта на нашей сайте: \nhttps://stankininfo.github.io/landing" />
+        android:text="Внимание! Это первая альфа-версия приложения Stankin INFO. Она создана для ознакомления с проектом, часть функционала еще не реализована. Вы можете следить за ходом развития проекта на нашем сайте: \nhttps://stankininfo.github.io/landing" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/ok_button"
