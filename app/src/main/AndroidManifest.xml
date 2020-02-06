@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="visapps.mystankin.app">
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <application
             android:name=".StankinApplication"
             android:allowBackup="true"
